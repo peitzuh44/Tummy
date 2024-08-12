@@ -8,17 +8,47 @@
 
 /* Begin PBXBuildFile section */
 		AF6B11432C6A0AD8007CD3E6 /* TummyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */; };
-		AF6B11452C6A0AD8007CD3E6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11442C6A0AD8007CD3E6 /* ContentView.swift */; };
 		AF6B11472C6A0ADB007CD3E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */; };
 		AF6B114A2C6A0ADB007CD3E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11492C6A0ADB007CD3E6 /* Preview Assets.xcassets */; };
+		AF6B11532C6A0B3B007CD3E6 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11522C6A0B3B007CD3E6 /* Position.swift */; };
+		AF6B11572C6A0CC4007CD3E6 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11562C6A0CC4007CD3E6 /* DateManager.swift */; };
+		AF6B11592C6A0EB0007CD3E6 /* FoodJournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11582C6A0EB0007CD3E6 /* FoodJournalView.swift */; };
+		AF6B115C2C6A130B007CD3E6 /* FoodJournalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B115B2C6A130B007CD3E6 /* FoodJournalViewModel.swift */; };
+		AF6B115F2C6A143B007CD3E6 /* WeekCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B115E2C6A143B007CD3E6 /* WeekCalendar.swift */; };
+		AF6B11612C6A17CB007CD3E6 /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11602C6A17CB007CD3E6 /* FloatingActionButton.swift */; };
+		AF6B11632C6A187E007CD3E6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11622C6A187E007CD3E6 /* MainView.swift */; };
+		AF6B117A2C6A2546007CD3E6 /* FoodTemplateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11792C6A2546007CD3E6 /* FoodTemplateSheet.swift */; };
+		AF6B117C2C6A2591007CD3E6 /* AddFoodJournalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B117B2C6A2591007CD3E6 /* AddFoodJournalSheet.swift */; };
+		AF6B117F2C6A32DE007CD3E6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B117E2C6A32DE007CD3E6 /* HomeView.swift */; };
+		AF6B11812C6A34CB007CD3E6 /* BeforeMealSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11802C6A34CB007CD3E6 /* BeforeMealSheet.swift */; };
+		AF964B332C6A5807005B2301 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B322C6A5806005B2301 /* SearchBar.swift */; };
+		AF964B362C6A5AEE005B2301 /* MoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B352C6A5AEE005B2301 /* MoodManager.swift */; };
+		AF964B382C6A5E01005B2301 /* HScrollPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B372C6A5E01005B2301 /* HScrollPicker.swift */; };
+		AF964B3A2C6A5EE6005B2301 /* EatingTimerVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B392C6A5EE6005B2301 /* EatingTimerVIew.swift */; };
+		AF964B3C2C6A61D1005B2301 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B3B2C6A61D1005B2301 /* TimeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AF6B113F2C6A0AD8007CD3E6 /* Tummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TummyApp.swift; sourceTree = "<group>"; };
-		AF6B11442C6A0AD8007CD3E6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF6B11492C6A0ADB007CD3E6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AF6B11522C6A0B3B007CD3E6 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		AF6B11562C6A0CC4007CD3E6 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		AF6B11582C6A0EB0007CD3E6 /* FoodJournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodJournalView.swift; sourceTree = "<group>"; };
+		AF6B115B2C6A130B007CD3E6 /* FoodJournalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodJournalViewModel.swift; sourceTree = "<group>"; };
+		AF6B115E2C6A143B007CD3E6 /* WeekCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCalendar.swift; sourceTree = "<group>"; };
+		AF6B11602C6A17CB007CD3E6 /* FloatingActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButton.swift; sourceTree = "<group>"; };
+		AF6B11622C6A187E007CD3E6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		AF6B11792C6A2546007CD3E6 /* FoodTemplateSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTemplateSheet.swift; sourceTree = "<group>"; };
+		AF6B117B2C6A2591007CD3E6 /* AddFoodJournalSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodJournalSheet.swift; sourceTree = "<group>"; };
+		AF6B117E2C6A32DE007CD3E6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		AF6B11802C6A34CB007CD3E6 /* BeforeMealSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeMealSheet.swift; sourceTree = "<group>"; };
+		AF964B322C6A5806005B2301 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		AF964B352C6A5AEE005B2301 /* MoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManager.swift; sourceTree = "<group>"; };
+		AF964B372C6A5E01005B2301 /* HScrollPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HScrollPicker.swift; sourceTree = "<group>"; };
+		AF964B392C6A5EE6005B2301 /* EatingTimerVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatingTimerVIew.swift; sourceTree = "<group>"; };
+		AF964B3B2C6A61D1005B2301 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +81,14 @@
 		AF6B11412C6A0AD8007CD3E6 /* Tummy */ = {
 			isa = PBXGroup;
 			children = (
+				AF964B342C6A5ADD005B2301 /* Manager */,
+				AF6B115D2C6A1428007CD3E6 /* Components */,
+				AF6B115A2C6A12F7007CD3E6 /* ViewModel */,
+				AF6B11512C6A0B2B007CD3E6 /* Extensions */,
+				AF6B11502C6A0B23007CD3E6 /* View */,
 				AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */,
-				AF6B11442C6A0AD8007CD3E6 /* ContentView.swift */,
-				AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */,
 				AF6B11482C6A0ADB007CD3E6 /* Preview Content */,
+				AF6B11622C6A187E007CD3E6 /* MainView.swift */,
 			);
 			path = Tummy;
 			sourceTree = "<group>";
@@ -62,9 +96,84 @@
 		AF6B11482C6A0ADB007CD3E6 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */,
 				AF6B11492C6A0ADB007CD3E6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AF6B11502C6A0B23007CD3E6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AF6B11802C6A34CB007CD3E6 /* BeforeMealSheet.swift */,
+				AF6B117D2C6A32B8007CD3E6 /* Home */,
+				AF6B11762C6A2289007CD3E6 /* Timer */,
+				AF6B11682C6A2062007CD3E6 /* Food Journal */,
+				AF964B392C6A5EE6005B2301 /* EatingTimerVIew.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AF6B11512C6A0B2B007CD3E6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AF6B11522C6A0B3B007CD3E6 /* Position.swift */,
+				AF6B11562C6A0CC4007CD3E6 /* DateManager.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AF6B115A2C6A12F7007CD3E6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AF6B115B2C6A130B007CD3E6 /* FoodJournalViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AF6B115D2C6A1428007CD3E6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AF6B11602C6A17CB007CD3E6 /* FloatingActionButton.swift */,
+				AF6B115E2C6A143B007CD3E6 /* WeekCalendar.swift */,
+				AF964B322C6A5806005B2301 /* SearchBar.swift */,
+				AF964B372C6A5E01005B2301 /* HScrollPicker.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AF6B11682C6A2062007CD3E6 /* Food Journal */ = {
+			isa = PBXGroup;
+			children = (
+				AF6B11792C6A2546007CD3E6 /* FoodTemplateSheet.swift */,
+				AF6B11582C6A0EB0007CD3E6 /* FoodJournalView.swift */,
+				AF6B117B2C6A2591007CD3E6 /* AddFoodJournalSheet.swift */,
+			);
+			path = "Food Journal";
+			sourceTree = "<group>";
+		};
+		AF6B11762C6A2289007CD3E6 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		AF6B117D2C6A32B8007CD3E6 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				AF6B117E2C6A32DE007CD3E6 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		AF964B342C6A5ADD005B2301 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				AF964B352C6A5AEE005B2301 /* MoodManager.swift */,
+				AF964B3B2C6A61D1005B2301 /* TimeManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +246,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF6B11452C6A0AD8007CD3E6 /* ContentView.swift in Sources */,
+				AF6B11632C6A187E007CD3E6 /* MainView.swift in Sources */,
+				AF6B11572C6A0CC4007CD3E6 /* DateManager.swift in Sources */,
+				AF964B382C6A5E01005B2301 /* HScrollPicker.swift in Sources */,
+				AF964B3C2C6A61D1005B2301 /* TimeManager.swift in Sources */,
+				AF6B117A2C6A2546007CD3E6 /* FoodTemplateSheet.swift in Sources */,
+				AF964B3A2C6A5EE6005B2301 /* EatingTimerVIew.swift in Sources */,
 				AF6B11432C6A0AD8007CD3E6 /* TummyApp.swift in Sources */,
+				AF6B11812C6A34CB007CD3E6 /* BeforeMealSheet.swift in Sources */,
+				AF6B11612C6A17CB007CD3E6 /* FloatingActionButton.swift in Sources */,
+				AF964B332C6A5807005B2301 /* SearchBar.swift in Sources */,
+				AF6B11592C6A0EB0007CD3E6 /* FoodJournalView.swift in Sources */,
+				AF6B117C2C6A2591007CD3E6 /* AddFoodJournalSheet.swift in Sources */,
+				AF6B115F2C6A143B007CD3E6 /* WeekCalendar.swift in Sources */,
+				AF6B117F2C6A32DE007CD3E6 /* HomeView.swift in Sources */,
+				AF6B115C2C6A130B007CD3E6 /* FoodJournalViewModel.swift in Sources */,
+				AF6B11532C6A0B3B007CD3E6 /* Position.swift in Sources */,
+				AF964B362C6A5AEE005B2301 /* MoodManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +399,7 @@
 				DEVELOPMENT_TEAM = N5MYS96KJV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We will need to access your camera";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +429,7 @@
 				DEVELOPMENT_TEAM = N5MYS96KJV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We will need to access your camera";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
