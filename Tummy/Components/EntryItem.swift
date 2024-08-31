@@ -6,19 +6,9 @@
 //
 
 import SwiftUI
-
-
 struct EntryItem: View {
-    @State var people: [Tag] = [
-        Tag(name: "professor", category: .people),
-        Tag(name: "Ryan Ma", category: .people),
-    ]
-    @State var locations: [Tag] = [
-        Tag(name: "School", category: .location)
-    ]
-    @State var reasons: [Tag] = [
-        Tag(name: "Social", category: .reason)
-    ]
+    var entry: FoodDiary
+    
     var body: some View {
         VStack {
             // Prompt
@@ -46,7 +36,6 @@ struct EntryItem: View {
                         HStack {
                             Image(systemName: "sun.horizon")
                             Text("Breakfast")
-                            
                         }
                         .font(.headline)
                         Divider()
@@ -55,22 +44,29 @@ struct EntryItem: View {
                             HStack {
                                 Text("People")
                                     .font(.caption)
-                                ScrollView(.horizontal){
-                                    HStack {
-                                        ForEach(people) { tag in
-                                            ContextTag(contextTag: tag)
+                                if !entry.people.isEmpty {
+                                    ScrollView(.horizontal){
+                                        HStack {
+                                            ForEach(entry.people, id: \.self) { tag in
+                                                ContextStringTag(text: tag ?? "You ate alone.")
+                                            }
                                         }
                                     }
+                                    .scrollIndicators(.hidden)
+                                } else {
+                                    Text("You ate alone")
                                 }
-                                .scrollIndicators(.hidden)
+                                
+                                
+                                
                             }
                             HStack {
                                 Text("Place")
                                     .font(.caption)
                                 ScrollView(.horizontal){
                                     HStack {
-                                        ForEach(locations) { tag in
-                                            ContextTag(contextTag: tag)
+                                        ForEach(entry.location, id: \.self) { tag in
+                                            ContextStringTag(text: tag)
                                         }
                                     }
                                 }
@@ -81,8 +77,8 @@ struct EntryItem: View {
                                     .font(.caption)
                                 ScrollView(.horizontal){
                                     HStack {
-                                        ForEach(reasons) { tag in
-                                            ContextTag(contextTag: tag)
+                                        ForEach(entry.reason, id: \.self) { tag in
+                                            ContextStringTag(text: tag)
                                         }
                                     }
                                 }
@@ -92,11 +88,9 @@ struct EntryItem: View {
                                 Text("Hungerness")
                                     .font(.caption)
                                 HStack {
-                                    Text("3")
-                                    
+                                    Text("\(entry.hungerBefore)")
                                     Image(systemName: "arrow.forward")
-                                    
-                                    Text("7")
+                                    Text("\(entry.fullnessAfter)")
                                     
                                 }
                                 .font(.caption2)
@@ -149,6 +143,3 @@ struct EntryItem: View {
     }
 }
 
-#Preview {
-    EntryItem()
-}
