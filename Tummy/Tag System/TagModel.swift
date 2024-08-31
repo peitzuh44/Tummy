@@ -7,14 +7,20 @@
 
 import Foundation
 
-struct Tag: Identifiable {
-    var id = UUID()
+struct Tag: Identifiable, Codable {
+    var id: String
     var name: String
     var isSelected: Bool = false
-    var category: TagCategory
+    var category: TagCategory.RawValue
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, isSelected, category
+    }
     
 }
 
-enum TagCategory {
+enum TagCategory: String, Codable, CaseIterable {
     case people, location, reason
+    
+    
 }
