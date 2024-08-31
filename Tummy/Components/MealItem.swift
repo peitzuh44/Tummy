@@ -51,7 +51,7 @@ struct MealItem: View {
     @State var contextTags: [Tag] = [
         Tag(name: "professor", category: .people),
         Tag(name: "Ryan Ma", category: .people),
-        Tag(name: "school", category: .place),
+        Tag(name: "school", category: .location),
 
     ]
     
@@ -126,10 +126,10 @@ struct ContextTag: View {
     
     var body: some View {
         Text(contextTag.name)
-            .font(.caption)
+            .font(.caption2)
             .fontWeight(.medium)
-            .padding(.horizontal)
-            .padding(.vertical, 6)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 4)
             .background(
                 RoundedRectangle(cornerRadius: 20.0)
                     .fill(Color(.systemGray5))

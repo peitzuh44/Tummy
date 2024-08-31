@@ -15,12 +15,21 @@ class TagManager: ObservableObject {
         Tag(name: "Family", category: .people),
         Tag(name: "Roommate", category: .people),
         Tag(name: "Pets", category: .people),
-        Tag(name: "School", category: .place),
-        Tag(name: "Home", category: .place),
-        Tag(name: "Work", category: .place),
-        Tag(name: "Bus", category: .place),
-        Tag(name: "Library", category: .place),
-        Tag(name: "Dining Hall", category: .place)
+        Tag(name: "School", category: .location),
+        Tag(name: "Home", category: .location),
+        Tag(name: "Work", category: .location),
+        Tag(name: "Bus", category: .location),
+        Tag(name: "Library", category: .location),
+        Tag(name: "Dining Hall", category: .location),
+        //why eat tags
+        Tag(name: "Hungry", category: .reason),
+        Tag(name: "Social", category: .reason),
+        Tag(name: "Craving", category: .reason),
+        Tag(name: "Bored", category: .reason),
+        Tag(name: "Tired", category: .reason),
+        Tag(name: "Anxious", category: .reason),
+        Tag(name: "Love the taste", category: .reason)
+
      ]
     @Published var isAddingNewTag: Bool = false
     @Published var newTagName: String = ""

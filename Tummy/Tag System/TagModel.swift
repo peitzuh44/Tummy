@@ -16,5 +16,5 @@ struct Tag: Identifiable {
 }
 
 enum TagCategory {
-    case people, place, emotion
+    case people, location, reason
 }

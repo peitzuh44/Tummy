@@ -22,13 +22,12 @@ struct TaggingView: View {
             
             HStack (alignment: .center, spacing: 30){
                 Text(promptText)
-                    .font(.title3)
                     .fontWeight(.semibold)
                 
                 ChipTextField(title: "+", text: $newTagName, category: category, manager: manager)
             }
             .padding(.vertical)
-            TagLayout(alignment: .center, spacing: 10) {
+            TagLayout(alignment: .leading) {
                 ForEach(manager.tags.filter{
                     $0.category == category
                 }) {
@@ -42,6 +41,7 @@ struct TaggingView: View {
             
 
         }
+        .padding()
 
 
 

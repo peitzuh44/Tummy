@@ -5,14 +5,35 @@
 //  Created by Pei-Tzu Huang on 2024/8/17.
 //
 
+
 import SwiftUI
 
-struct GenericPickerButton: View {
+struct GenericPickerButton<Content: View>: View {
+    let pickerText: String
+    let selectionText: String
+    @Binding var isPresenting: Bool
+    let content: () -> Content
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            self.isPresenting = true
+        }) {
+            HStack {
+                Text(pickerText)
+                Spacer()
+                Text(selectionText)
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .foregroundColor(.white)
+            .background(
+                RoundedRectangle(cornerRadius: 20.0)
+                    .fill(.thinMaterial)
+            )
+        }
+        .sheet(isPresented: $isPresenting) {
+            self.content()
+        }
     }
 }
 
-#Preview {
-    GenericPickerButton()
-}

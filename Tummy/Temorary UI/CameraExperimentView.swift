@@ -6,13 +6,29 @@
 //
 
 import SwiftUI
+//
+//struct CameraExperimentView: View {
+//    @State private var showCameraView = false
+//
+//    var body: some View {
+//        
+//        VStack {
+//            Button(action: {
+//                showCameraView = true
+//                        }) {
+//                            Text("Take Photo from Camera")
+//                                .padding()
+//                                .background(Color.blue)
+//                                .foregroundColor(.white)
+//                                .cornerRadius(10)
+//                        }
+//                        .fullScreenCover(isPresented: $showCameraView) {
+//                            CameraView(isPresented: $showCameraView)
+//                        }
+//        }
+//       
+//        }
+//    }
+//    
+    
 
-struct CameraExperimentView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    CameraExperimentView()
-}

@@ -7,48 +7,98 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF30B4CF2C81F0A10035858F /* FoodDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4CE2C81F0A00035858F /* FoodDiary.swift */; };
+		AF30B4D12C81F3E60035858F /* FoodDiaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4D02C81F3E60035858F /* FoodDiaryViewModel.swift */; };
+		AF30B4D42C81F4B50035858F /* FoodDiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4D32C81F4B50035858F /* FoodDiaryView.swift */; };
+		AF30B4D62C82BD290035858F /* EntryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4D52C82BD280035858F /* EntryItem.swift */; };
+		AF30B4D82C82DD1E0035858F /* EntryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4D72C82DD1E0035858F /* EntryDetailView.swift */; };
 		AF6B11432C6A0AD8007CD3E6 /* TummyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */; };
 		AF6B11472C6A0ADB007CD3E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */; };
 		AF6B114A2C6A0ADB007CD3E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11492C6A0ADB007CD3E6 /* Preview Assets.xcassets */; };
 		AF6B11532C6A0B3B007CD3E6 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11522C6A0B3B007CD3E6 /* Position.swift */; };
 		AF6B11572C6A0CC4007CD3E6 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11562C6A0CC4007CD3E6 /* DateManager.swift */; };
-		AF6B11592C6A0EB0007CD3E6 /* FoodJournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11582C6A0EB0007CD3E6 /* FoodJournalView.swift */; };
 		AF6B115C2C6A130B007CD3E6 /* FoodJournalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B115B2C6A130B007CD3E6 /* FoodJournalViewModel.swift */; };
 		AF6B115F2C6A143B007CD3E6 /* WeekCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B115E2C6A143B007CD3E6 /* WeekCalendar.swift */; };
 		AF6B11612C6A17CB007CD3E6 /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11602C6A17CB007CD3E6 /* FloatingActionButton.swift */; };
 		AF6B11632C6A187E007CD3E6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11622C6A187E007CD3E6 /* MainView.swift */; };
-		AF6B117A2C6A2546007CD3E6 /* FoodTemplateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11792C6A2546007CD3E6 /* FoodTemplateSheet.swift */; };
-		AF6B117C2C6A2591007CD3E6 /* AddFoodJournalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B117B2C6A2591007CD3E6 /* AddFoodJournalSheet.swift */; };
-		AF6B117F2C6A32DE007CD3E6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B117E2C6A32DE007CD3E6 /* HomeView.swift */; };
-		AF6B11812C6A34CB007CD3E6 /* BeforeMealSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11802C6A34CB007CD3E6 /* BeforeMealSheet.swift */; };
 		AF964B332C6A5807005B2301 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B322C6A5806005B2301 /* SearchBar.swift */; };
 		AF964B362C6A5AEE005B2301 /* MoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B352C6A5AEE005B2301 /* MoodManager.swift */; };
 		AF964B382C6A5E01005B2301 /* HScrollPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B372C6A5E01005B2301 /* HScrollPicker.swift */; };
-		AF964B3A2C6A5EE6005B2301 /* EatingTimerVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B392C6A5EE6005B2301 /* EatingTimerVIew.swift */; };
 		AF964B3C2C6A61D1005B2301 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B3B2C6A61D1005B2301 /* TimeManager.swift */; };
+		AF964B462C6C68A1005B2301 /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B452C6C68A1005B2301 /* TagManager.swift */; };
+		AF964B482C6C68BD005B2301 /* TaggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B472C6C68BD005B2301 /* TaggingView.swift */; };
+		AF964B4A2C6C692D005B2301 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B492C6C692D005B2301 /* TagModel.swift */; };
+		AF964B4C2C6C7948005B2301 /* TagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B4B2C6C7948005B2301 /* TagLayout.swift */; };
+		AF964B4E2C6C8F87005B2301 /* ChipTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B4D2C6C8F87005B2301 /* ChipTextField.swift */; };
+		AF964B502C6C8FC4005B2301 /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B4F2C6C8FC4005B2301 /* Chip.swift */; };
+		AF964B542C6CD18A005B2301 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B532C6CD18A005B2301 /* HomePage.swift */; };
+		AF964B562C6CD7F3005B2301 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B552C6CD7F3005B2301 /* Color.swift */; };
+		AF964B582C6D0933005B2301 /* DetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B572C6D0933005B2301 /* DetailPage.swift */; };
+		AF964B5E2C6EEFEE005B2301 /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B5D2C6EEFEE005B2301 /* MealItem.swift */; };
+		AF964B662C6F4306005B2301 /* PrefoodCheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B652C6F4306005B2301 /* PrefoodCheckInView.swift */; };
+		AF964B682C6F4D05005B2301 /* MindfulEatingTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B672C6F4D05005B2301 /* MindfulEatingTimerView.swift */; };
+		AF964B6A2C6F5736005B2301 /* PostFoodCheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B692C6F5736005B2301 /* PostFoodCheckInView.swift */; };
+		AF964B6C2C6F631B005B2301 /* FoodJournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B6B2C6F631B005B2301 /* FoodJournalView.swift */; };
+		AF964B702C6F6400005B2301 /* WhySkipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B6F2C6F6400005B2301 /* WhySkipView.swift */; };
+		AF964B732C704CE0005B2301 /* HungerScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B722C704CE0005B2301 /* HungerScale.swift */; };
+		AF964B752C705AFA005B2301 /* GenericPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B742C705AFA005B2301 /* GenericPickerButton.swift */; };
+		AF964B782C706C37005B2301 /* MindfulEatingWithTummyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B772C706C37005B2301 /* MindfulEatingWithTummyView.swift */; };
+		AF964B7A2C708566005B2301 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B792C708566005B2301 /* SoundManager.swift */; };
+		AF964B7C2C709291005B2301 /* MindfulEatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B7B2C709290005B2301 /* MindfulEatingView.swift */; };
+		AF964B7F2C70935B005B2301 /* MindfulEating.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF964B7E2C70935B005B2301 /* MindfulEating.mp3 */; };
+		AF964B812C70A833005B2301 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF964B802C70A833005B2301 /* click.mp3 */; };
+		AF964B832C70E1D4005B2301 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B822C70E1D4005B2301 /* CameraView.swift */; };
+		AF964B862C70E1FE005B2301 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B852C70E1FE005B2301 /* CameraPreview.swift */; };
+		AF964B882C70E22F005B2301 /* PhotoDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B872C70E22E005B2301 /* PhotoDisplayView.swift */; };
+		AF964B8A2C70E278005B2301 /* CameraExperimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B892C70E278005B2301 /* CameraExperimentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF30B4CE2C81F0A00035858F /* FoodDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDiary.swift; sourceTree = "<group>"; };
+		AF30B4D02C81F3E60035858F /* FoodDiaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDiaryViewModel.swift; sourceTree = "<group>"; };
+		AF30B4D32C81F4B50035858F /* FoodDiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDiaryView.swift; sourceTree = "<group>"; };
+		AF30B4D52C82BD280035858F /* EntryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryItem.swift; sourceTree = "<group>"; };
+		AF30B4D72C82DD1E0035858F /* EntryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailView.swift; sourceTree = "<group>"; };
 		AF6B113F2C6A0AD8007CD3E6 /* Tummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TummyApp.swift; sourceTree = "<group>"; };
 		AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF6B11492C6A0ADB007CD3E6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AF6B11522C6A0B3B007CD3E6 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		AF6B11562C6A0CC4007CD3E6 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
-		AF6B11582C6A0EB0007CD3E6 /* FoodJournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodJournalView.swift; sourceTree = "<group>"; };
 		AF6B115B2C6A130B007CD3E6 /* FoodJournalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodJournalViewModel.swift; sourceTree = "<group>"; };
 		AF6B115E2C6A143B007CD3E6 /* WeekCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCalendar.swift; sourceTree = "<group>"; };
 		AF6B11602C6A17CB007CD3E6 /* FloatingActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButton.swift; sourceTree = "<group>"; };
 		AF6B11622C6A187E007CD3E6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		AF6B11792C6A2546007CD3E6 /* FoodTemplateSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTemplateSheet.swift; sourceTree = "<group>"; };
-		AF6B117B2C6A2591007CD3E6 /* AddFoodJournalSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodJournalSheet.swift; sourceTree = "<group>"; };
-		AF6B117E2C6A32DE007CD3E6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		AF6B11802C6A34CB007CD3E6 /* BeforeMealSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeMealSheet.swift; sourceTree = "<group>"; };
 		AF964B322C6A5806005B2301 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		AF964B352C6A5AEE005B2301 /* MoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManager.swift; sourceTree = "<group>"; };
 		AF964B372C6A5E01005B2301 /* HScrollPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HScrollPicker.swift; sourceTree = "<group>"; };
-		AF964B392C6A5EE6005B2301 /* EatingTimerVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatingTimerVIew.swift; sourceTree = "<group>"; };
 		AF964B3B2C6A61D1005B2301 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
+		AF964B452C6C68A1005B2301 /* TagManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
+		AF964B472C6C68BD005B2301 /* TaggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggingView.swift; sourceTree = "<group>"; };
+		AF964B492C6C692D005B2301 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
+		AF964B4B2C6C7948005B2301 /* TagLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLayout.swift; sourceTree = "<group>"; };
+		AF964B4D2C6C8F87005B2301 /* ChipTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipTextField.swift; sourceTree = "<group>"; };
+		AF964B4F2C6C8FC4005B2301 /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
+		AF964B532C6CD18A005B2301 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		AF964B552C6CD7F3005B2301 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		AF964B572C6D0933005B2301 /* DetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPage.swift; sourceTree = "<group>"; };
+		AF964B5D2C6EEFEE005B2301 /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
+		AF964B652C6F4306005B2301 /* PrefoodCheckInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefoodCheckInView.swift; sourceTree = "<group>"; };
+		AF964B672C6F4D05005B2301 /* MindfulEatingTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindfulEatingTimerView.swift; sourceTree = "<group>"; };
+		AF964B692C6F5736005B2301 /* PostFoodCheckInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFoodCheckInView.swift; sourceTree = "<group>"; };
+		AF964B6B2C6F631B005B2301 /* FoodJournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodJournalView.swift; sourceTree = "<group>"; };
+		AF964B6F2C6F6400005B2301 /* WhySkipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhySkipView.swift; sourceTree = "<group>"; };
+		AF964B722C704CE0005B2301 /* HungerScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungerScale.swift; sourceTree = "<group>"; };
+		AF964B742C705AFA005B2301 /* GenericPickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPickerButton.swift; sourceTree = "<group>"; };
+		AF964B772C706C37005B2301 /* MindfulEatingWithTummyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindfulEatingWithTummyView.swift; sourceTree = "<group>"; };
+		AF964B792C708566005B2301 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		AF964B7B2C709290005B2301 /* MindfulEatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindfulEatingView.swift; sourceTree = "<group>"; };
+		AF964B7E2C70935B005B2301 /* MindfulEating.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MindfulEating.mp3; sourceTree = "<group>"; };
+		AF964B802C70A833005B2301 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
+		AF964B822C70E1D4005B2301 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		AF964B852C70E1FE005B2301 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		AF964B872C70E22E005B2301 /* PhotoDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDisplayView.swift; sourceTree = "<group>"; };
+		AF964B892C70E278005B2301 /* CameraExperimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraExperimentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF30B4D22C81F49B0035858F /* Food Diary */ = {
+			isa = PBXGroup;
+			children = (
+				AF30B4D32C81F4B50035858F /* FoodDiaryView.swift */,
+				AF30B4D72C82DD1E0035858F /* EntryDetailView.swift */,
+			);
+			path = "Food Diary";
+			sourceTree = "<group>";
+		};
 		AF6B11362C6A0AD8007CD3E6 = {
 			isa = PBXGroup;
 			children = (
@@ -81,14 +140,18 @@
 		AF6B11412C6A0AD8007CD3E6 /* Tummy */ = {
 			isa = PBXGroup;
 			children = (
+				AF964B522C6CD16B005B2301 /* Temorary UI */,
+				AF6B11622C6A187E007CD3E6 /* MainView.swift */,
+				AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */,
+				AF964B7D2C70933B005B2301 /* Sounds */,
+				AF6B11512C6A0B2B007CD3E6 /* Extensions */,
+				AF964B762C706BF6005B2301 /* Model */,
+				AF964B422C6C60D9005B2301 /* Tag System */,
+				AF6B115A2C6A12F7007CD3E6 /* ViewModel */,
 				AF964B342C6A5ADD005B2301 /* Manager */,
 				AF6B115D2C6A1428007CD3E6 /* Components */,
-				AF6B115A2C6A12F7007CD3E6 /* ViewModel */,
-				AF6B11512C6A0B2B007CD3E6 /* Extensions */,
 				AF6B11502C6A0B23007CD3E6 /* View */,
-				AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */,
 				AF6B11482C6A0ADB007CD3E6 /* Preview Content */,
-				AF6B11622C6A187E007CD3E6 /* MainView.swift */,
 			);
 			path = Tummy;
 			sourceTree = "<group>";
@@ -105,11 +168,9 @@
 		AF6B11502C6A0B23007CD3E6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AF6B11802C6A34CB007CD3E6 /* BeforeMealSheet.swift */,
+				AF30B4D22C81F49B0035858F /* Food Diary */,
 				AF6B117D2C6A32B8007CD3E6 /* Home */,
-				AF6B11762C6A2289007CD3E6 /* Timer */,
-				AF6B11682C6A2062007CD3E6 /* Food Journal */,
-				AF964B392C6A5EE6005B2301 /* EatingTimerVIew.swift */,
+				AF964B6E2C6F6355005B2301 /* Insights */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,6 +180,7 @@
 			children = (
 				AF6B11522C6A0B3B007CD3E6 /* Position.swift */,
 				AF6B11562C6A0CC4007CD3E6 /* DateManager.swift */,
+				AF964B552C6CD7F3005B2301 /* Color.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -127,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				AF6B115B2C6A130B007CD3E6 /* FoodJournalViewModel.swift */,
+				AF30B4D02C81F3E60035858F /* FoodDiaryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -134,35 +197,28 @@
 		AF6B115D2C6A1428007CD3E6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AF964B512C6C8FDA005B2301 /* Layout */,
+				AF964B5D2C6EEFEE005B2301 /* MealItem.swift */,
 				AF6B11602C6A17CB007CD3E6 /* FloatingActionButton.swift */,
 				AF6B115E2C6A143B007CD3E6 /* WeekCalendar.swift */,
 				AF964B322C6A5806005B2301 /* SearchBar.swift */,
 				AF964B372C6A5E01005B2301 /* HScrollPicker.swift */,
+				AF964B4D2C6C8F87005B2301 /* ChipTextField.swift */,
+				AF964B4F2C6C8FC4005B2301 /* Chip.swift */,
+				AF964B722C704CE0005B2301 /* HungerScale.swift */,
+				AF964B742C705AFA005B2301 /* GenericPickerButton.swift */,
+				AF30B4D52C82BD280035858F /* EntryItem.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		AF6B11682C6A2062007CD3E6 /* Food Journal */ = {
-			isa = PBXGroup;
-			children = (
-				AF6B11792C6A2546007CD3E6 /* FoodTemplateSheet.swift */,
-				AF6B11582C6A0EB0007CD3E6 /* FoodJournalView.swift */,
-				AF6B117B2C6A2591007CD3E6 /* AddFoodJournalSheet.swift */,
-			);
-			path = "Food Journal";
-			sourceTree = "<group>";
-		};
-		AF6B11762C6A2289007CD3E6 /* Timer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Timer;
 			sourceTree = "<group>";
 		};
 		AF6B117D2C6A32B8007CD3E6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				AF6B117E2C6A32DE007CD3E6 /* HomeView.swift */,
+				AF964B532C6CD18A005B2301 /* HomePage.swift */,
+				AF964B6D2C6F6347005B2301 /* Skip */,
+				AF964B642C6F42E3005B2301 /* Past Meal */,
+				AF964B632C6F42DC005B2301 /* Camera */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -172,8 +228,91 @@
 			children = (
 				AF964B352C6A5AEE005B2301 /* MoodManager.swift */,
 				AF964B3B2C6A61D1005B2301 /* TimeManager.swift */,
+				AF964B792C708566005B2301 /* SoundManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		AF964B422C6C60D9005B2301 /* Tag System */ = {
+			isa = PBXGroup;
+			children = (
+				AF964B452C6C68A1005B2301 /* TagManager.swift */,
+				AF964B472C6C68BD005B2301 /* TaggingView.swift */,
+				AF964B492C6C692D005B2301 /* TagModel.swift */,
+			);
+			path = "Tag System";
+			sourceTree = "<group>";
+		};
+		AF964B512C6C8FDA005B2301 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				AF964B4B2C6C7948005B2301 /* TagLayout.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		AF964B522C6CD16B005B2301 /* Temorary UI */ = {
+			isa = PBXGroup;
+			children = (
+				AF964B572C6D0933005B2301 /* DetailPage.swift */,
+				AF964B772C706C37005B2301 /* MindfulEatingWithTummyView.swift */,
+				AF964B7B2C709290005B2301 /* MindfulEatingView.swift */,
+				AF964B822C70E1D4005B2301 /* CameraView.swift */,
+				AF964B852C70E1FE005B2301 /* CameraPreview.swift */,
+				AF964B872C70E22E005B2301 /* PhotoDisplayView.swift */,
+				AF964B892C70E278005B2301 /* CameraExperimentView.swift */,
+			);
+			path = "Temorary UI";
+			sourceTree = "<group>";
+		};
+		AF964B632C6F42DC005B2301 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				AF964B652C6F4306005B2301 /* PrefoodCheckInView.swift */,
+				AF964B672C6F4D05005B2301 /* MindfulEatingTimerView.swift */,
+				AF964B692C6F5736005B2301 /* PostFoodCheckInView.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		AF964B642C6F42E3005B2301 /* Past Meal */ = {
+			isa = PBXGroup;
+			children = (
+				AF964B6B2C6F631B005B2301 /* FoodJournalView.swift */,
+			);
+			path = "Past Meal";
+			sourceTree = "<group>";
+		};
+		AF964B6D2C6F6347005B2301 /* Skip */ = {
+			isa = PBXGroup;
+			children = (
+				AF964B6F2C6F6400005B2301 /* WhySkipView.swift */,
+			);
+			path = Skip;
+			sourceTree = "<group>";
+		};
+		AF964B6E2C6F6355005B2301 /* Insights */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Insights;
+			sourceTree = "<group>";
+		};
+		AF964B762C706BF6005B2301 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AF30B4CE2C81F0A00035858F /* FoodDiary.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		AF964B7D2C70933B005B2301 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				AF964B802C70A833005B2301 /* click.mp3 */,
+				AF964B7E2C70935B005B2301 /* MindfulEating.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,7 +374,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF6B114A2C6A0ADB007CD3E6 /* Preview Assets.xcassets in Resources */,
+				AF964B812C70A833005B2301 /* click.mp3 in Resources */,
 				AF6B11472C6A0ADB007CD3E6 /* Assets.xcassets in Resources */,
+				AF964B7F2C70935B005B2301 /* MindfulEating.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,23 +387,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF30B4D12C81F3E60035858F /* FoodDiaryViewModel.swift in Sources */,
+				AF964B702C6F6400005B2301 /* WhySkipView.swift in Sources */,
 				AF6B11632C6A187E007CD3E6 /* MainView.swift in Sources */,
+				AF964B8A2C70E278005B2301 /* CameraExperimentView.swift in Sources */,
+				AF964B462C6C68A1005B2301 /* TagManager.swift in Sources */,
+				AF964B682C6F4D05005B2301 /* MindfulEatingTimerView.swift in Sources */,
+				AF964B502C6C8FC4005B2301 /* Chip.swift in Sources */,
+				AF964B6A2C6F5736005B2301 /* PostFoodCheckInView.swift in Sources */,
 				AF6B11572C6A0CC4007CD3E6 /* DateManager.swift in Sources */,
+				AF964B4C2C6C7948005B2301 /* TagLayout.swift in Sources */,
 				AF964B382C6A5E01005B2301 /* HScrollPicker.swift in Sources */,
+				AF964B482C6C68BD005B2301 /* TaggingView.swift in Sources */,
 				AF964B3C2C6A61D1005B2301 /* TimeManager.swift in Sources */,
-				AF6B117A2C6A2546007CD3E6 /* FoodTemplateSheet.swift in Sources */,
-				AF964B3A2C6A5EE6005B2301 /* EatingTimerVIew.swift in Sources */,
+				AF964B862C70E1FE005B2301 /* CameraPreview.swift in Sources */,
 				AF6B11432C6A0AD8007CD3E6 /* TummyApp.swift in Sources */,
-				AF6B11812C6A34CB007CD3E6 /* BeforeMealSheet.swift in Sources */,
+				AF964B732C704CE0005B2301 /* HungerScale.swift in Sources */,
+				AF30B4D82C82DD1E0035858F /* EntryDetailView.swift in Sources */,
+				AF964B5E2C6EEFEE005B2301 /* MealItem.swift in Sources */,
+				AF964B4E2C6C8F87005B2301 /* ChipTextField.swift in Sources */,
 				AF6B11612C6A17CB007CD3E6 /* FloatingActionButton.swift in Sources */,
+				AF964B4A2C6C692D005B2301 /* TagModel.swift in Sources */,
+				AF30B4D62C82BD290035858F /* EntryItem.swift in Sources */,
+				AF964B832C70E1D4005B2301 /* CameraView.swift in Sources */,
+				AF964B662C6F4306005B2301 /* PrefoodCheckInView.swift in Sources */,
+				AF964B7A2C708566005B2301 /* SoundManager.swift in Sources */,
+				AF964B7C2C709291005B2301 /* MindfulEatingView.swift in Sources */,
+				AF30B4CF2C81F0A10035858F /* FoodDiary.swift in Sources */,
+				AF964B562C6CD7F3005B2301 /* Color.swift in Sources */,
 				AF964B332C6A5807005B2301 /* SearchBar.swift in Sources */,
-				AF6B11592C6A0EB0007CD3E6 /* FoodJournalView.swift in Sources */,
-				AF6B117C2C6A2591007CD3E6 /* AddFoodJournalSheet.swift in Sources */,
+				AF964B542C6CD18A005B2301 /* HomePage.swift in Sources */,
+				AF964B752C705AFA005B2301 /* GenericPickerButton.swift in Sources */,
 				AF6B115F2C6A143B007CD3E6 /* WeekCalendar.swift in Sources */,
-				AF6B117F2C6A32DE007CD3E6 /* HomeView.swift in Sources */,
+				AF964B6C2C6F631B005B2301 /* FoodJournalView.swift in Sources */,
+				AF964B882C70E22F005B2301 /* PhotoDisplayView.swift in Sources */,
+				AF30B4D42C81F4B50035858F /* FoodDiaryView.swift in Sources */,
 				AF6B115C2C6A130B007CD3E6 /* FoodJournalViewModel.swift in Sources */,
 				AF6B11532C6A0B3B007CD3E6 /* Position.swift in Sources */,
 				AF964B362C6A5AEE005B2301 /* MoodManager.swift in Sources */,
+				AF964B782C706C37005B2301 /* MindfulEatingWithTummyView.swift in Sources */,
+				AF964B582C6D0933005B2301 /* DetailPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

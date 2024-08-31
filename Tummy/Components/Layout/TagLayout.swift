@@ -36,7 +36,7 @@ struct TagLayout: Layout {
         
         for row in rows {
             // resetting origin X to zero for each row
-            origin.x = 0
+            origin.x = 28
             
             for view in row {
                 let viewSize = view.sizeThatFits(proposal)
@@ -67,7 +67,7 @@ struct TagLayout: Layout {
             if (origin.x + viewSize.width + spacing) > maxWidth {
                 rows.append(row)
                 row.removeAll()
-                origin.x = 0
+                origin.x = 28
                 row.append(view)
                 origin.x += (viewSize.width + spacing)
             } else {

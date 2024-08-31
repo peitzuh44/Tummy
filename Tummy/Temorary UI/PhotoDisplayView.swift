@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct PhotoDisplayView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    let image: UIImage
+    @Binding var showPhotoDisplayView: Bool
 
-#Preview {
-    PhotoDisplayView()
+    var body: some View {
+        VStack {
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.black)
+                .edgesIgnoringSafeArea(.all)
+            
+            Button("Close") {
+                showPhotoDisplayView = false
+            }
+            .padding()
+            .background(Color.red)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+        }
+    }
 }
