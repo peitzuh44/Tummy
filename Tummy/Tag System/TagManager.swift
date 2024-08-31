@@ -6,44 +6,64 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseAuth
 
 class TagManager: ObservableObject {
-    @Published var tags: [Tag] = [
-        Tag(name: "By Myself", category: .people),
-        Tag(name: "Professor", category: .people),
-        Tag(name: "Co-Workers", category: .people),
-        Tag(name: "Family", category: .people),
-        Tag(name: "Roommate", category: .people),
-        Tag(name: "Pets", category: .people),
-        Tag(name: "School", category: .location),
-        Tag(name: "Home", category: .location),
-        Tag(name: "Work", category: .location),
-        Tag(name: "Bus", category: .location),
-        Tag(name: "Library", category: .location),
-        Tag(name: "Dining Hall", category: .location),
-        //why eat tags
-        Tag(name: "Hungry", category: .reason),
-        Tag(name: "Social", category: .reason),
-        Tag(name: "Craving", category: .reason),
-        Tag(name: "Bored", category: .reason),
-        Tag(name: "Tired", category: .reason),
-        Tag(name: "Anxious", category: .reason),
-        Tag(name: "Love the taste", category: .reason)
-
-     ]
+    @Published var tags: [Tag] = []
+    private var listenerRegistration: ListenerRegistration?
     @Published var isAddingNewTag: Bool = false
     @Published var newTagName: String = ""
+    let db = Firestore.firestore()
+    
+    // MARK: Fetch Tags
+    func fetchTags() {
+        guard let user = Auth.auth().currentUser else {
+            print("Current user not sign in")
+            return
+        }
+        listenerRegistration = db.collection("tags")
+            .whereField("createdBy", isEqualTo: user.uid)
+            .whereField("createdBy", isEqualTo: "Admin")
+            .addSnapshotListener { [weak self] querySnapshot, error in
+                guard let self = self else { return }
+                guard let documents = querySnapshot?.documents, error == nil else {
+                    print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
+                    return
+                }
+                self.tags = documents.compactMap { try? $0.data(as: Tag.self)}
+            }
+        
+        
+    }
+    // MARK: Filter Tag By Categories
+    func tags(forCategory category: TagCategory.RawValue) -> [Tag] {
+        return tags.filter { $0.category.lowercased() == category.lowercased()}
+    }
     
     
-    func addTag(_ name: String, _ category: TagCategory) {
-          let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-          if !trimmedName.isEmpty {
-              tags.append(Tag(name: trimmedName, isSelected: true, category: category))
-              
-          }
-          isAddingNewTag = false
-          newTagName = ""
-      }
+    // TODO: Craete Tag
+    
+    func createTag(name: String, category: TagCategory) {
+        if !name.isEmpty {
+            // Make sure that current user is signin so we have the uid
+            guard let user = Auth.auth().currentUser else {
+                print("Current user not sign in")
+                return
+            }
+            let tagRef = db.collection("tags").document()
+            let tagID = tagRef.documentID
+            let tag = Tag(id: tagID, name: name, isSelected: true, category: category.rawValue)
+            do {
+                try
+                db.collection("tags").document(tagID)
+                    .setData(from: tag)
+                print("Document with id: \(tagID) added sucessfully!")
+            } catch {
+                print("Error adding document: \(error)")
+            }
+        }
+    }
     
     func toggleSelection(of tag: Tag) {
         if let index = tags.firstIndex(where: { $0.id == tag.id }) {
@@ -51,4 +71,7 @@ class TagManager: ObservableObject {
         }
     }
     
+    
+    
 }
+
