@@ -1,0 +1,20 @@
+//
+//  TagModel.swift
+//  Tummy
+//
+//  Created by Pei-Tzu Huang on 2024/8/14.
+//
+
+import Foundation
+
+struct Tag: Identifiable {
+    var id = UUID()
+    var name: String
+    var isSelected: Bool = false
+    var category: TagCategory
+    
+}
+
+enum TagCategory {
+    case people, place, emotion
+}
