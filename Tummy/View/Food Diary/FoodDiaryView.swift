@@ -95,7 +95,7 @@ struct FoodDiaryView: View {
             .toolbar {
                 ToolbarItem (placement: .topBarTrailing){
                     NavigationLink {
-                        // Settings view
+                        SettingsView(authManager: authManager)
                     } label: {
                         Image(systemName: "gear")
                     }

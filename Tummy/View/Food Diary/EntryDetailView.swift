@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EntryDetailView: View {
-    var entry: FoodDiary
+    var entry: FoodEntry
 
     var body: some View {
         ScrollView {

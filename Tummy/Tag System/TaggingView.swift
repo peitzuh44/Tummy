@@ -13,7 +13,6 @@ struct TaggingView: View {
     @StateObject var viewModel: FoodEntryViewModel
     var promptText: String
     var category: TagCategory
-    @StateObject var manager: TagManager
     @Binding var newTagName: String
     @Binding var selectedTags: [Tag]
     var body: some View {
@@ -21,7 +20,7 @@ struct TaggingView: View {
             HStack (alignment: .center, spacing: 30){
                 Text(promptText)
                     .fontWeight(.semibold)
-                ChipTextField(viewModel: viewModel, title: "+", name: $newTagName, category: category, manager: manager, selectedTags: $selectedTags)
+                ChipTextField(viewModel: viewModel, title: "+", name: $newTagName, category: category, selectedTags: $selectedTags)
             }
             .padding(.vertical)
             TagLayout(alignment: .leading) {

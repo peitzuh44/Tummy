@@ -14,7 +14,6 @@ struct ChipTextField: View {
     let title: String
     @Binding var name: String
     var category: TagCategory
-    @StateObject var manager: TagManager
     @Binding var selectedTags: [Tag]
     @State private var textRect = CGRect()
     

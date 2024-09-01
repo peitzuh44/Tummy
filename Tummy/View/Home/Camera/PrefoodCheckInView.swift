@@ -10,7 +10,6 @@ import SwiftUI
 struct PrefoodCheckInView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel: FoodEntryViewModel
-    @StateObject var manager: TagManager = TagManager()
     @State private var newPerson: String = ""
     @State private var newPlace: String = ""
     @State private var newReason: String = ""
@@ -39,20 +38,20 @@ struct PrefoodCheckInView: View {
 
                
                     // Who are you eating with?
-                    TaggingView(viewModel: viewModel, promptText: "Who are you eating with?", category: .people, manager: manager, newTagName: $newPerson, selectedTags: $selectedTags)
+                    TaggingView(viewModel: viewModel, promptText: "Who are you eating with?", category: .people, newTagName: $newPerson, selectedTags: $selectedTags)
                         .background(
                             RoundedRectangle(cornerRadius: 20.0)
                                 .fill(.thickMaterial)
                         )
                        
-                    TaggingView(viewModel: viewModel, promptText: "Where are you eating?", category: .location, manager: manager, newTagName: $newPlace, selectedTags: $selectedTags)
+                    TaggingView(viewModel: viewModel, promptText: "Where are you eating?", category: .location, newTagName: $newPlace, selectedTags: $selectedTags)
                         .background(
                             RoundedRectangle(cornerRadius: 20.0)
                                 .fill(.thickMaterial)
                         )
                         
                     // Where are you eating?
-                    TaggingView(viewModel: viewModel, promptText: "Why are you eating?", category: .reason, manager: manager, newTagName: $newReason, selectedTags: $selectedTags)
+                    TaggingView(viewModel: viewModel, promptText: "Why are you eating?", category: .reason, newTagName: $newReason, selectedTags: $selectedTags)
                         .background(
                             RoundedRectangle(cornerRadius: 20.0)
                                 .fill(.thickMaterial)
