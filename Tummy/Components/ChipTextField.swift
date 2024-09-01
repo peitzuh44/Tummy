@@ -10,23 +10,25 @@ import SwiftUI
 // MARK: Chip Textfield
 
 struct ChipTextField: View {
+    @StateObject var viewModel: FoodEntryViewModel
     let title: String
-    @Binding var text: String
+    @Binding var name: String
     var category: TagCategory
     @StateObject var manager: TagManager
-
+    @Binding var selectedTags: [Tag]
     @State private var textRect = CGRect()
     
     var body: some View {
         ZStack {
-            Text(text == "" ? title : text)
+            Text(name == "" ? title : name)
                 .background(GlobalGeometryGetter(rect: $textRect)).layoutPriority(1).opacity(0)
             HStack {
-                TextField(title, text: $text)
+                TextField(title, text: $name)
                     .font(.callout)
                     .onSubmit {
-                        manager.addTag(text, category)
-                        text = ""
+                        viewModel.createTag(name: name, category: category)
+                        name = ""
+                        
                     }
                 .frame(width: textRect.width)
             }
@@ -38,6 +40,8 @@ struct ChipTextField: View {
             )
         }
     }
+
+
 }
 
 

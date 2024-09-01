@@ -9,15 +9,15 @@ import SwiftUI
 
 struct PrefoodCheckInView: View {
     @Environment(\.presentationMode) var presentationMode
+    @StateObject var viewModel: FoodEntryViewModel
     @StateObject var manager: TagManager = TagManager()
     @State private var newPerson: String = ""
     @State private var newPlace: String = ""
-    @State private var newWhyEat: String = ""
+    @State private var newReason: String = ""
+    @State private var selectedTags: [Tag] = []
     @State private var showHungerScale: Bool = false
     @State var selectedHunger: HungerScaleOption = .five
     @Binding var showMindfulEatingView: Bool
-    
-    
     
     var body: some View {
         NavigationStack {
@@ -39,27 +39,31 @@ struct PrefoodCheckInView: View {
 
                
                     // Who are you eating with?
-                    TaggingView(promptText: "Who are you eating with?", manager: manager, newTagName: $newPerson, category: .people)
+                    TaggingView(viewModel: viewModel, promptText: "Who are you eating with?", category: .people, manager: manager, newTagName: $newPerson, selectedTags: $selectedTags)
                         .background(
-                            RoundedRectangle(cornerRadius: 30.0)
+                            RoundedRectangle(cornerRadius: 20.0)
                                 .fill(.thickMaterial)
                         )
                        
-                    TaggingView(promptText: "Where are you eating?", manager: manager, newTagName: $newPlace, category: .location)
+                    TaggingView(viewModel: viewModel, promptText: "Where are you eating?", category: .location, manager: manager, newTagName: $newPlace, selectedTags: $selectedTags)
                         .background(
-                            RoundedRectangle(cornerRadius: 30.0)
+                            RoundedRectangle(cornerRadius: 20.0)
                                 .fill(.thickMaterial)
                         )
                         
                     // Where are you eating?
-                    TaggingView(promptText: "Why are you eating?", manager: manager, newTagName: $newWhyEat, category: .reason)
+                    TaggingView(viewModel: viewModel, promptText: "Why are you eating?", category: .reason, manager: manager, newTagName: $newReason, selectedTags: $selectedTags)
                         .background(
-                            RoundedRectangle(cornerRadius: 30.0)
+                            RoundedRectangle(cornerRadius: 20.0)
                                 .fill(.thickMaterial)
                         )
                     
                     // MARK: Next Button
                     Button {
+                        Task {
+                            await viewModel.createEntry(hungerBefore: selectedHunger)
+
+                        }
                         presentationMode.wrappedValue.dismiss()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                             showMindfulEatingView = true
@@ -75,9 +79,6 @@ struct PrefoodCheckInView: View {
                                         .fill(Color.blue)
                                 )
                         }
-
-
-
                 }
             }
             .scrollIndicators(.hidden)
@@ -88,6 +89,9 @@ struct PrefoodCheckInView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
                         presentationMode.wrappedValue.dismiss()
+                        Task {
+                            await viewModel.resetTags()
+                        }
                     } label: {
                         Text("X")
                             .foregroundStyle(Color.white)
@@ -100,6 +104,6 @@ struct PrefoodCheckInView: View {
     }
 }
 
-#Preview {
-    PrefoodCheckInView(showMindfulEatingView: .constant(true))
-}
+
+
+

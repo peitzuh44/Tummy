@@ -7,7 +7,8 @@
 
 import SwiftUI
 struct EntryItem: View {
-    var entry: FoodDiary
+    
+    var entry: FoodEntry
     
     var body: some View {
         VStack {
@@ -19,7 +20,6 @@ struct EntryItem: View {
             .font(.caption)
             
             VStack {
-                
                 HStack (spacing: 16){
                     VStack {
                         Image("Food")
@@ -27,11 +27,9 @@ struct EntryItem: View {
                             .scaledToFit()
                             .clipShape(
                                 RoundedRectangle(cornerRadius: 10.0)
-                                
                             )
                             .frame(height: 150)
                     }
-                    
                     VStack(alignment: .leading, spacing: 8){
                         HStack {
                             Image(systemName: "sun.horizon")
@@ -56,9 +54,6 @@ struct EntryItem: View {
                                 } else {
                                     Text("You ate alone")
                                 }
-                                
-                                
-                                
                             }
                             HStack {
                                 Text("Place")
