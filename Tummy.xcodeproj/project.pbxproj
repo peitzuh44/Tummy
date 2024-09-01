@@ -19,6 +19,7 @@
 		AF30B4ED2C8384500035858F /* AppleSignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4EC2C8384500035858F /* AppleSignInCoordinator.swift */; };
 		AF30B4F02C8481760035858F /* FoodEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4EF2C8481760035858F /* FoodEntryViewModel.swift */; };
 		AF30B4F22C8487BD0035858F /* FoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4F12C8487BD0035858F /* FoodEntry.swift */; };
+		AF30B4F72C84B0EC0035858F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4F62C84B0EC0035858F /* SettingsView.swift */; };
 		AF6B11432C6A0AD8007CD3E6 /* TummyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */; };
 		AF6B11472C6A0ADB007CD3E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */; };
 		AF6B114A2C6A0ADB007CD3E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11492C6A0ADB007CD3E6 /* Preview Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		AF30B4EF2C8481760035858F /* FoodEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodEntryViewModel.swift; sourceTree = "<group>"; };
 		AF30B4F12C8487BD0035858F /* FoodEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodEntry.swift; sourceTree = "<group>"; };
 		AF30B4F42C84ADC40035858F /* Tummy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Tummy.entitlements; path = ../../Tummy.entitlements; sourceTree = "<group>"; };
+		AF30B4F62C84B0EC0035858F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AF6B113F2C6A0AD8007CD3E6 /* Tummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TummyApp.swift; sourceTree = "<group>"; };
 		AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 		AF30B4D22C81F49B0035858F /* Food Diary */ = {
 			isa = PBXGroup;
 			children = (
+				AF30B4F52C84B0D70035858F /* Settings */,
 				AF30B4D32C81F4B50035858F /* FoodDiaryView.swift */,
 				AF30B4D72C82DD1E0035858F /* EntryDetailView.swift */,
 			);
@@ -151,6 +154,14 @@
 				AF30B4EC2C8384500035858F /* AppleSignInCoordinator.swift */,
 			);
 			path = Logic;
+			sourceTree = "<group>";
+		};
+		AF30B4F52C84B0D70035858F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AF30B4F62C84B0EC0035858F /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		AF6B11362C6A0AD8007CD3E6 = {
@@ -450,6 +461,7 @@
 				AF964B7A2C708566005B2301 /* SoundManager.swift in Sources */,
 				AF964B7C2C709291005B2301 /* MindfulEatingView.swift in Sources */,
 				AF30B4ED2C8384500035858F /* AppleSignInCoordinator.swift in Sources */,
+				AF30B4F72C84B0EC0035858F /* SettingsView.swift in Sources */,
 				AF30B4F02C8481760035858F /* FoodEntryViewModel.swift in Sources */,
 				AF964B562C6CD7F3005B2301 /* Color.swift in Sources */,
 				AF964B332C6A5807005B2301 /* SearchBar.swift in Sources */,
