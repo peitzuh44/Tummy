@@ -11,28 +11,29 @@ import SwiftUI
 // Date selector
 
 struct FoodDiaryView: View {
+    
+    // View Model
+    @ObservedObject var authManager: AuthManager
+    @StateObject var viewModel: FoodEntryViewModel = FoodEntryViewModel()
     // Show sheets - Camera
     @State private var showCamera: Bool = false
     @State private var showPrefoodCheckIn: Bool = false
     @State private var showMindfulEatingView: Bool = false
     @State private var showPostEatingCheckIn: Bool = false
-    
+    @State private var selectedDate: Date = Date()
     @State private var addTapped: Bool = false
     @State private var rotation: CGFloat = 0
     var body: some View {
         NavigationStack {
             ZStack (alignment: .bottomTrailing){
                 Color(.systemBackground).ignoresSafeArea(.all)
-                VStack {
-                    
+                VStack{
                     ScrollView {
-                        VStack {
-                            
-                            EntryItem()
-                            EntryItem()
-                            EntryItem()
-                            
-                            
+                        VStack(spacing: 16){
+                            ForEach(viewModel.foodEntries) { entry in
+                                EntryItem(entry: entry)
+                                
+                            }
                         }
                         .padding(.horizontal)
                     }
@@ -85,7 +86,7 @@ struct FoodDiaryView: View {
             }
             // MARK: Sheets
             .fullScreenCover(isPresented: $showCamera, content: {
-                PrefoodCheckInView(showMindfulEatingView: $showMindfulEatingView)
+                PrefoodCheckInView(viewModel: viewModel, showMindfulEatingView: $showMindfulEatingView)
             })
             // Camera - mindful eating with Tummy
             .fullScreenCover(isPresented: $showMindfulEatingView, content: {
@@ -105,11 +106,10 @@ struct FoodDiaryView: View {
             .navigationTitle("Food Diary")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .onAppear {
+            viewModel.fetchEntries(date: selectedDate)
+        }
     }
-}
-
-#Preview {
-    FoodDiaryView()
 }
 
 

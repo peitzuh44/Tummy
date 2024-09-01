@@ -9,12 +9,13 @@ import Foundation
 
 struct Tag: Identifiable, Codable {
     var id: String
+    var createdBy: String
     var name: String
     var isSelected: Bool = false
     var category: TagCategory.RawValue
     
     enum CodingKeys: String, CodingKey {
-        case id, name, isSelected, category
+        case id, createdBy, name, isSelected, category
     }
     
 }

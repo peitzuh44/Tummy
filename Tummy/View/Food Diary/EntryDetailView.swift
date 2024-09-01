@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct EntryDetailView: View {
-    @State var locations: [Tag] = [
-        Tag(name: "School", category: .location)
-    ]
-    @State var reasons: [Tag] = [
-        Tag(name: "Social", category: .reason)
-    ]
+    var entry: FoodDiary
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading){
@@ -98,6 +94,3 @@ struct EntryDetailView: View {
     }
 }
 
-#Preview {
-    EntryDetailView()
-}

@@ -15,7 +15,7 @@ struct TummyApp: App {
     } 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            AuthView()
         }
     }
 }

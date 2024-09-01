@@ -8,22 +8,20 @@
 import SwiftUI
 
 struct MainView: View {
+    @ObservedObject var authManager: AuthManager
+
     var body: some View {
         TabView {
-            HomePage()
-                .tabItem {
-                    Image(systemName: "heart")
-                    Text("Food")
-                }
-            FoodDiaryView()
+//            HomePage()
+//                .tabItem {
+//                    Image(systemName: "heart")
+//                    Text("Food")
+//                }
+            FoodDiaryView(authManager: authManager)
                 .tabItem {
                     Image(systemName: "book.closed")
                     Text("Food Diary")
                 }
         }
     }
-}
-
-#Preview {
-    MainView()
 }
