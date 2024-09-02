@@ -9,7 +9,7 @@ import SwiftUI
 struct EntryItem: View {
     
     var entry: FoodEntry
-    @StateObject var viewModel: FoodEntryViewModel
+    @ObservedObject var viewModel: FoodEntryViewModel
     
     var body: some View {
         NavigationLink {
@@ -26,13 +26,16 @@ struct EntryItem: View {
                 VStack {
                     HStack (spacing: 16){
                         VStack {
-                            Image("Food")
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(
-                                    RoundedRectangle(cornerRadius: 10.0)
-                                )
-                                .frame(height: 150)
+                            if let image = viewModel.image(for: entry) {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .clipShape(RoundedRectangle(cornerRadius: 10.0))
+                                    .frame(height: 150)
+                            } else {
+                                ProgressView()
+                                    .frame(height: 150)
+                            }
                         }
                         VStack(alignment: .leading, spacing: 8){
                             HStack {
@@ -141,7 +144,11 @@ struct EntryItem: View {
             }
         }
         .foregroundStyle(.white)
-
+        .task {
+            await viewModel.loadImage(for: entry)
+        }
+        
+        
     }
 }
 

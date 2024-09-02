@@ -11,7 +11,7 @@ import SwiftUI
 struct FoodDiaryView: View {
     
     // View Model
-    @ObservedObject var authManager: AuthManager
+    @StateObject var authManager: AuthManager
     @StateObject var viewModel: FoodEntryViewModel = FoodEntryViewModel()
     // Show sheets - Camera
     @State private var showCamera: Bool = false

@@ -18,14 +18,55 @@ class FoodEntryViewModel: ObservableObject {
     @Published var foodEntries: [FoodEntry] = []
     @Published var allTags: [Tag] = []
     @Published var selectedTags: [Tag] = []
+    @Published var images: [String: UIImage] = [:]
+
     
     // Init firebase firestore
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
     private var listenerRegistration: ListenerRegistration?
     
+    func loadImage(for entry: FoodEntry) async {
+        if let cachedImage = ImageCache.shared.getImage(forKey: entry.id) {
+            DispatchQueue.main.async {
+                self.images[entry.id] = cachedImage
+            }
+            return
+        }
+        
+        guard let photoURL = entry.photoURL, let url = URL(string: photoURL) else {
+            DispatchQueue.main.async {
+                self.images[entry.id] = UIImage(systemName: "photo")
+            }
+            return
+        }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            if let uiImage = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.images[entry.id] = uiImage
+                    ImageCache.shared.setImage(uiImage, forKey: entry.id)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.images[entry.id] = UIImage(systemName: "photo")
+                }
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.images[entry.id] = UIImage(systemName: "photo")
+            }
+        }
+    }
+    
+    func image(for entry: FoodEntry) -> UIImage? {
+        return images[entry.id]
+    }
+
     
     // MARK: Tags configuration
+    
     
     // TODO: Fetch all tags
     func fetchTags() {
@@ -254,34 +295,6 @@ extension FoodEntryViewModel {
             print("Error converting entry to data: \(error)")
         }
     }
-    
-//    func createEntry(hungerBefore: HungerScaleOption) async {
-//        guard let user = user else {
-//            print("User not signed in")
-//            return
-//        }
-//        
-//        let selectedTags = await fetchSelectedTags()
-//        
-//        print("✅ Input Tags \(selectedTags)")
-//        let people = filterAndMapToString(tags: selectedTags, filter: .people)
-//        let locations = filterAndMapToString(tags: selectedTags, filter: .location)
-//        let reasons = filterAndMapToString(tags: selectedTags, filter: .reason)
-//        print("People: \(people) | Location: \(locations) | Reason: \(reasons)")
-//        
-//        let entryRef = db.collection("FoodEntries").document()
-//        let entryID = entryRef.documentID
-//        let entry = FoodEntry(id: entryID, createdBy: user.uid, isRealTime: true, photoURL: "none", textDescription: "none", hungerBefore: hungerBefore.number, time: Date(), mealType: "breakfast", location: locations, eatAlone: people.isEmpty, people: people, reason: reasons, fullnessAfter: 0, notes: "No notes for now", postCompleted: false)
-//        
-//        do {
-//            try entryRef.setData(from: entry)
-//            await resetTags()
-//        } catch {
-//            print("Error converting entry to data: \(error)")
-//        }
-//        
-//    }
-//    
     func filterAndMapToString(tags: [Tag], filter category: TagCategory) -> [String] {
         let result = tags.filter {$0.category.lowercased() == category.rawValue.lowercased()}.map { $0.name}
         return result
@@ -316,3 +329,17 @@ extension FoodEntryViewModel {
     
 }
 
+class ImageCache {
+    static let shared = ImageCache()
+    private var cache: [String: UIImage] = [:]
+    
+    private init() {}
+    
+    func setImage(_ image: UIImage, forKey key: String) {
+        cache[key] = image
+    }
+    
+    func getImage(forKey key: String) -> UIImage? {
+        return cache[key]
+    }
+}

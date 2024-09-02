@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EntryDetailView: View {
     
-    @StateObject var viewModel: FoodEntryViewModel
+    @ObservedObject var viewModel: FoodEntryViewModel
     var entry: FoodEntry
     @State private var showPostMealSheet = false
 
@@ -18,14 +18,21 @@ struct EntryDetailView: View {
             VStack(alignment: .leading){
                 
                 // Food Photo
-                Image("Food")
-                    .resizable()
-                    .frame(height: 500)
-                    .scaledToFit()
-                    .frame(maxWidth: .infinity)
-                    .clipShape(
-                        Rectangle()
-                    )
+                
+                if let image = viewModel.image(for: entry) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .frame(height: 500)
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity)
+                        .clipShape(
+                            Rectangle()
+                        )
+                } else {
+                    ProgressView()
+                        .frame(height: 150)
+                }
+                
                 
                 // MARK: Complete post meal button
                 if entry.postCompleted == false {
@@ -87,6 +94,9 @@ struct EntryDetailView: View {
         })
         .onAppear {
             print("Entry \(entry.id) passed in")
+        }
+        .task {
+        await viewModel.loadImage(for: entry)
         }
     }
 }
