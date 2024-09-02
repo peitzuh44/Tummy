@@ -12,10 +12,9 @@ struct FoodEntry: Identifiable, Codable {
     let createdBy: String
     let isRealTime: Bool
     let photoURL: String?
-    let textDescription: String?
     let hungerBefore: Int
     let time: Date
-    let mealType: String?
+    let mealType: String
     var location: [String]
     var eatAlone: Bool
     var people: [String?]
@@ -29,7 +28,6 @@ struct FoodEntry: Identifiable, Codable {
         case createdBy
         case isRealTime
         case photoURL
-        case textDescription
         case hungerBefore
         case time
         case mealType
@@ -43,4 +41,19 @@ struct FoodEntry: Identifiable, Codable {
     }
     
     
+}
+
+
+struct FoodItem: Identifiable, Codable {
+    let id: String
+    var name: String
+    var quantity: Int
+    var unit: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case quantity
+        case unit
+    }
 }

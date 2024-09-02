@@ -23,6 +23,8 @@
 		AF30B4FA2C84CFEC0035858F /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4F92C84CFEC0035858F /* AddNoteView.swift */; };
 		AF30B5072C8588990035858F /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B5062C8588990035858F /* CameraView.swift */; };
 		AF30B50C2C858EAA0035858F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = AF30B50B2C858EAA0035858F /* FirebaseStorage */; };
+		AF30B50E2C85AF1D0035858F /* ContextTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B50D2C85AF1D0035858F /* ContextTag.swift */; };
+		AF30B5102C8610C20035858F /* AddFoodItemSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B50F2C8610C20035858F /* AddFoodItemSheet.swift */; };
 		AF6B11432C6A0AD8007CD3E6 /* TummyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */; };
 		AF6B11472C6A0ADB007CD3E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */; };
 		AF6B114A2C6A0ADB007CD3E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11492C6A0ADB007CD3E6 /* Preview Assets.xcassets */; };
@@ -43,7 +45,6 @@
 		AF964B542C6CD18A005B2301 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B532C6CD18A005B2301 /* HomePage.swift */; };
 		AF964B562C6CD7F3005B2301 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B552C6CD7F3005B2301 /* Color.swift */; };
 		AF964B582C6D0933005B2301 /* DetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B572C6D0933005B2301 /* DetailPage.swift */; };
-		AF964B5E2C6EEFEE005B2301 /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B5D2C6EEFEE005B2301 /* MealItem.swift */; };
 		AF964B662C6F4306005B2301 /* PrefoodCheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B652C6F4306005B2301 /* PrefoodCheckInView.swift */; };
 		AF964B682C6F4D05005B2301 /* MindfulEatingTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B672C6F4D05005B2301 /* MindfulEatingTimerView.swift */; };
 		AF964B6A2C6F5736005B2301 /* PostFoodCheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B692C6F5736005B2301 /* PostFoodCheckInView.swift */; };
@@ -72,6 +73,8 @@
 		AF30B4F62C84B0EC0035858F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AF30B4F92C84CFEC0035858F /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
 		AF30B5062C8588990035858F /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		AF30B50D2C85AF1D0035858F /* ContextTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTag.swift; sourceTree = "<group>"; };
+		AF30B50F2C8610C20035858F /* AddFoodItemSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodItemSheet.swift; sourceTree = "<group>"; };
 		AF6B113F2C6A0AD8007CD3E6 /* Tummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TummyApp.swift; sourceTree = "<group>"; };
 		AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,7 +96,6 @@
 		AF964B532C6CD18A005B2301 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		AF964B552C6CD7F3005B2301 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		AF964B572C6D0933005B2301 /* DetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPage.swift; sourceTree = "<group>"; };
-		AF964B5D2C6EEFEE005B2301 /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
 		AF964B652C6F4306005B2301 /* PrefoodCheckInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefoodCheckInView.swift; sourceTree = "<group>"; };
 		AF964B672C6F4D05005B2301 /* MindfulEatingTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindfulEatingTimerView.swift; sourceTree = "<group>"; };
 		AF964B692C6F5736005B2301 /* PostFoodCheckInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFoodCheckInView.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				AF30B4F52C84B0D70035858F /* Settings */,
 				AF30B4D32C81F4B50035858F /* FoodDiaryView.swift */,
 				AF30B4D72C82DD1E0035858F /* EntryDetailView.swift */,
+				AF30B50F2C8610C20035858F /* AddFoodItemSheet.swift */,
 			);
 			path = "Food Diary";
 			sourceTree = "<group>";
@@ -264,7 +267,6 @@
 			isa = PBXGroup;
 			children = (
 				AF964B512C6C8FDA005B2301 /* Layout */,
-				AF964B5D2C6EEFEE005B2301 /* MealItem.swift */,
 				AF6B11602C6A17CB007CD3E6 /* FloatingActionButton.swift */,
 				AF6B115E2C6A143B007CD3E6 /* WeekCalendar.swift */,
 				AF964B322C6A5806005B2301 /* SearchBar.swift */,
@@ -274,6 +276,7 @@
 				AF964B722C704CE0005B2301 /* HungerScale.swift */,
 				AF964B742C705AFA005B2301 /* GenericPickerButton.swift */,
 				AF30B4D52C82BD280035858F /* EntryItem.swift */,
+				AF30B50D2C85AF1D0035858F /* ContextTag.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -461,7 +464,6 @@
 				AF6B11432C6A0AD8007CD3E6 /* TummyApp.swift in Sources */,
 				AF964B732C704CE0005B2301 /* HungerScale.swift in Sources */,
 				AF30B4D82C82DD1E0035858F /* EntryDetailView.swift in Sources */,
-				AF964B5E2C6EEFEE005B2301 /* MealItem.swift in Sources */,
 				AF964B4E2C6C8F87005B2301 /* ChipTextField.swift in Sources */,
 				AF6B11612C6A17CB007CD3E6 /* FloatingActionButton.swift in Sources */,
 				AF30B4EA2C8384020035858F /* AuthManager.swift in Sources */,
@@ -476,6 +478,7 @@
 				AF964B562C6CD7F3005B2301 /* Color.swift in Sources */,
 				AF964B332C6A5807005B2301 /* SearchBar.swift in Sources */,
 				AF30B4FA2C84CFEC0035858F /* AddNoteView.swift in Sources */,
+				AF30B50E2C85AF1D0035858F /* ContextTag.swift in Sources */,
 				AF964B542C6CD18A005B2301 /* HomePage.swift in Sources */,
 				AF964B752C705AFA005B2301 /* GenericPickerButton.swift in Sources */,
 				AF6B115F2C6A143B007CD3E6 /* WeekCalendar.swift in Sources */,
@@ -486,6 +489,7 @@
 				AF6B11532C6A0B3B007CD3E6 /* Position.swift in Sources */,
 				AF964B362C6A5AEE005B2301 /* MoodManager.swift in Sources */,
 				AF964B782C706C37005B2301 /* MindfulEatingWithTummyView.swift in Sources */,
+				AF30B5102C8610C20035858F /* AddFoodItemSheet.swift in Sources */,
 				AF964B582C6D0933005B2301 /* DetailPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,7 +16,10 @@ struct PrefoodCheckInView: View {
     @State private var selectedTags: [Tag] = []
     @State private var showHungerScale: Bool = false
     @State var selectedHunger: HungerScaleOption = .five
+    @State private var selectedMeal: Meal = .breakfast
     @Binding var showMindfulEatingView: Bool
+    @State private var foodItems: [FoodItem] = [] // Store the list of food items
+    @State private var showAddFoodItemSheet = false
     
     // Photo
     var image: UIImage
@@ -25,19 +28,57 @@ struct PrefoodCheckInView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack (spacing: 12){
+                VStack (spacing: 16){
                     // MARK: Meal Photo
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 300, height: 300)
                     
+                    // MARK: Item description
+                    VStack {
+                        HStack {
+                            Text("Food Items")
+                            Spacer()
+                            Button {
+                                showAddFoodItemSheet = true
+                            } label: {
+                                Text("Add")
+                            }
+
+                        }
+                        VStack {
+                            ForEach(foodItems) { item in
+                                HStack {
+                                    Text(item.name)
+                                    Spacer()
+                                    Text("\(item.quantity) \(item.unit)")
+                                }
+                            }
+                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                Button(role: .destructive) {
+                                    // action here
+                                } label: {
+                                    Label("delete", systemImage: "trash.fill")
+                                }
+
+                            }
+                        }
+                    }
+                    // MARK: Meal Picker
+                    Picker("Meal", selection: $selectedMeal) {
+                        ForEach(Meal.allCases, id: \.self) {
+                            Text($0.text)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(.vertical, 8)
+                    
+                    
                     // MARK: Hunger Scale
                     GenericPickerButton(pickerText: "Hunger Scale", selectionText: selectedHunger.text, isPresenting: $showHungerScale) {
                         HungerScale(selectedHunger: $selectedHunger)
                     }
-    
-
                
                     // Who are you eating with?
                     TaggingView(viewModel: viewModel, promptText: "Who are you eating with?", category: .people, newTagName: $newPerson, selectedTags: $selectedTags)
@@ -61,8 +102,9 @@ struct PrefoodCheckInView: View {
                     
                     // MARK: Next Button
                     Button {
+                        print("FOOD ITEMS: \(foodItems)")
                         Task {
-                            await viewModel.createEntry(hungerBefore: selectedHunger, image: image)
+                            await viewModel.createEntry(hungerBefore: selectedHunger, image: image, meal: selectedMeal, foodItems: foodItems)
 
                         }
                         presentationMode.wrappedValue.dismiss()
@@ -102,6 +144,11 @@ struct PrefoodCheckInView: View {
                 }
             }
         }
+        .sheet(isPresented: $showAddFoodItemSheet) {
+            AddFoodItemSheet { newItem in
+                foodItems.append(newItem)
+            }
+        }
         .onAppear {
             print("get image: \(image)")
         }
@@ -109,5 +156,34 @@ struct PrefoodCheckInView: View {
 }
 
 
-
-
+enum Meal: String, CaseIterable, Hashable {
+    case breakfast, lunch, dinner, snack
+    
+    var text: String {
+        switch self {
+            
+        case .breakfast:
+            return "Breakfast"
+        case .lunch:
+            return "Lunch"
+        case .dinner:
+            return "Dinner"
+        case .snack:
+            return "Snack"
+        }
+    }
+    
+    var icon: String {
+        switch self {
+            
+        case .breakfast:
+            return "sun.horizon"
+        case .lunch:
+            return "sun.max.fill"
+        case .dinner:
+            return "moon.stars"
+        case .snack:
+            return "cup.and.saucer"
+        }
+    }
+}

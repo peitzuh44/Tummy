@@ -6,10 +6,24 @@
 //
 
 import SwiftUI
+
 struct EntryItem: View {
-    
     var entry: FoodEntry
     @ObservedObject var viewModel: FoodEntryViewModel
+    var icon: String {
+        switch entry.mealType.lowercased() {
+        case "breakfast":
+            return "sun.horizon"
+        case "lunch":
+            return "sun.max"
+        case "dinner":
+            return "moon.stars"
+        case "snack":
+            return "cup.and.saucer"
+        default:
+            return "questionmark.circle"
+        }
+    }
     
     var body: some View {
         NavigationLink {
@@ -22,10 +36,8 @@ struct EntryItem: View {
                         Spacer()
                         Text("Post meal questionnaire >>")
                             .font(.caption)
-
                     }
                 }
-                
                 VStack {
                     HStack (spacing: 16){
                         VStack {
@@ -42,8 +54,8 @@ struct EntryItem: View {
                         }
                         VStack(alignment: .leading, spacing: 8){
                             HStack {
-                                Image(systemName: "sun.horizon")
-                                Text("Breakfast")
+                                Image(systemName: "\(icon)")
+                                Text(entry.mealType.capitalized)
                             }
                             .font(.headline)
                             Divider()
@@ -108,29 +120,18 @@ struct EntryItem: View {
                                     )
                                 }
                             }
-                            
-                            
                         }
-                        
-                        
-                        
-                        
-                        
                     }
                     Divider()
                     VStack(alignment: .leading, spacing: 8) {
-                        HStack {
-                            Text("🍜 Dry noodle")
-                                .font(.headline)
-                            Spacer()
-                            Text("1 box")
-                        }
-                        
-                        HStack {
-                            Text("🍕 Hawaii Pizza")
-                                .font(.headline)
-                            Spacer()
-                            Text("2 slices")
+                        ForEach(viewModel.foodItems(for: entry)) { item in
+                            HStack {
+                                Text(item.name)
+                                    .font(.headline)
+                                Spacer()
+                                Text("\(item.quantity) \(item.unit)")
+                            }
+                            
                         }
                     }
                 }
@@ -149,6 +150,8 @@ struct EntryItem: View {
         .foregroundStyle(.white)
         .task {
             await viewModel.loadImage(for: entry)
+            await viewModel.fetchFoodItems(for: entry) // Fetch food items
+
         }
         
         

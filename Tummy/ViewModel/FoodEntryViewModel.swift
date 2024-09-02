@@ -16,6 +16,7 @@ class FoodEntryViewModel: ObservableObject {
     
     // Variables
     @Published var foodEntries: [FoodEntry] = []
+    @Published var foodItemsDictionary: [String: [FoodItem]] = [:] // Dictionary to hold food items for each entry
     @Published var allTags: [Tag] = []
     @Published var selectedTags: [Tag] = []
     @Published var images: [String: UIImage] = [:]
@@ -252,8 +253,7 @@ extension FoodEntryViewModel {
             }
         }
     }
-    // Update the createEntry function to include the image upload and URL storage
-    func createEntry(hungerBefore: HungerScaleOption, image: UIImage?) async {
+    func createEntry(hungerBefore: HungerScaleOption, image: UIImage?, meal: Meal, foodItems: [FoodItem]) async {
         guard let user = user else {
             print("User not signed in")
             return
@@ -286,15 +286,42 @@ extension FoodEntryViewModel {
             }
         }
         
-        let entry = FoodEntry(id: entryID, createdBy: user.uid, isRealTime: true, photoURL: photoURL, textDescription: "none", hungerBefore: hungerBefore.number, time: Date(), mealType: "breakfast", location: locations, eatAlone: people.isEmpty, people: people, reason: reasons, fullnessAfter: 0, notes: "No notes for now", postCompleted: false)
+        let entry = FoodEntry(
+            id: entryID,
+            createdBy: user.uid,
+            isRealTime: true,
+            photoURL: photoURL,
+            hungerBefore: hungerBefore.number,
+            time: Date(),
+            mealType: meal.text,
+            location: locations,
+            eatAlone: people.isEmpty,
+            people: people,
+            reason: reasons,
+            fullnessAfter: 0,
+            notes: "No notes for now",
+            postCompleted: false
+        )
         
         do {
+            // Create the FoodEntry document
+            print("Creating FoodEntry with ID: \(entryID)")
             try entryRef.setData(from: entry)
+            print("FoodEntry created successfully")
+            // Add each FoodItem as a sub-collection
+            for foodItem in foodItems {
+                print("Adding FoodItem with ID: \(foodItem.id) to FoodEntry with ID: \(entryID)")
+                let itemRef = entryRef.collection("FoodItems").document(foodItem.id)
+                try itemRef.setData(from: foodItem)
+                print("FoodItem added successfully")
+            }
+            
             await resetTags()
         } catch {
-            print("Error converting entry to data: \(error)")
+            print("Error creating entry or adding food items: \(error)")
         }
     }
+
     func filterAndMapToString(tags: [Tag], filter category: TagCategory) -> [String] {
         let result = tags.filter {$0.category.lowercased() == category.rawValue.lowercased()}.map { $0.name}
         return result
@@ -322,11 +349,47 @@ extension FoodEntryViewModel {
             print("Error updating entry: \(error.localizedDescription)")
             throw error
         }
-        
-        
-        
     }
     
+}
+
+// MARK: Add Item
+extension FoodEntryViewModel {
+    func addItemToEntry(name: String, quantity: Int, unit: String, entryID: String) {
+        let itemRef = db.collection("FoodEntries").document(entryID).collection("FoodItems").document()
+        
+        let itemID = itemRef.documentID
+        
+        let item = FoodItem(id: itemID, name: name, quantity: quantity, unit: unit)
+        
+        do {
+            try itemRef.setData(from: item)
+        } catch {
+            print("Error: \(error)")
+        }
+    }
+    
+    
+    func fetchFoodItems(for entry: FoodEntry) async {
+        let entryID = entry.id
+        let foodItemsRef = db.collection("FoodEntries").document(entryID).collection("FoodItems")
+        
+        do {
+            let snapshot = try await foodItemsRef.getDocuments()
+            let foodItems = snapshot.documents.compactMap { document -> FoodItem? in
+                try? document.data(as: FoodItem.self)
+            }
+            DispatchQueue.main.async {
+                self.foodItemsDictionary[entryID] = foodItems
+            }
+        } catch {
+            print("Error fetching food items: \(error)")
+        }
+    }
+    
+    func foodItems(for entry: FoodEntry) -> [FoodItem] {
+        return foodItemsDictionary[entry.id] ?? []
+    }
 }
 
 class ImageCache {
@@ -343,3 +406,4 @@ class ImageCache {
         return cache[key]
     }
 }
+
