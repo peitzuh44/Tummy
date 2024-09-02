@@ -17,11 +17,14 @@ struct EntryItem: View {
         } label: {
             VStack {
                 // Prompt
-                HStack {
-                    Spacer()
-                    Text("Post meal questionnaire >>")
+                if entry.postCompleted == false {
+                    HStack {
+                        Spacer()
+                        Text("Post meal questionnaire >>")
+                            .font(.caption)
+
+                    }
                 }
-                .font(.caption)
                 
                 VStack {
                     HStack (spacing: 16){
