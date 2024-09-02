@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-
 // Date selector
-
 struct FoodDiaryView: View {
     
     // View Model
@@ -31,8 +29,8 @@ struct FoodDiaryView: View {
                     ScrollView {
                         VStack(spacing: 16){
                             ForEach(viewModel.foodEntries) { entry in
-                                EntryItem(entry: entry)
-                                
+                                EntryItem(entry: entry, viewModel: viewModel)
+                                  
                             }
                         }
                         .padding(.horizontal)
@@ -92,6 +90,7 @@ struct FoodDiaryView: View {
             .fullScreenCover(isPresented: $showMindfulEatingView, content: {
                 MindfulEatingView(showPostFoodCheckIn: $showPostEatingCheckIn)
             })
+           
             .toolbar {
                 ToolbarItem (placement: .topBarTrailing){
                     NavigationLink {

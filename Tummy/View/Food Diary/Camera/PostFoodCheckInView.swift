@@ -8,17 +8,26 @@
 import SwiftUI
 
 struct PostFoodCheckInView: View {
+    
+    @StateObject var viewModel: FoodEntryViewModel
     @Environment(\.presentationMode) var presentationMode
+    
+    var selectedEntry: FoodEntry
 
-    @State var selectedHunger: HungerScaleOption = .five
-    @State private var showHungerScale: Bool = false
+    // selection - value to update
+    @State var selectedFullness: HungerScaleOption = .five
+    @State private var notes: String = ""
+    // Show Sheets
+    @State private var showHungerScale = false
+    @State private var showNotePage = false
+    
 
     var body: some View {
         // MARK: Fullness Scale
         NavigationStack {
             // MARK: Hunger Scale
-            GenericPickerButton(pickerText: "Hunger Scale", selectionText: selectedHunger.text, isPresenting: $showHungerScale) {
-                HungerScale(selectedHunger: $selectedHunger)
+            GenericPickerButton(pickerText: "Fullness", selectionText: selectedFullness.text, isPresenting: $showHungerScale) {
+                HungerScale(selectedHunger: $selectedFullness)
             }
             VStack (alignment: .leading) {
                 Text("How do you feel after eating?")
@@ -43,9 +52,50 @@ struct PostFoodCheckInView: View {
                     .fill(.thickMaterial)
             )
             
+            // MARK: Notes
+            Button {
+                showNotePage = true
+            } label: {
+        
+                if notes.isEmpty {
+                    HStack {
+                        Image(systemName: "square.and.pencil")
+                        Text("Write some notes...")
+                    }
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 60)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(.ultraThinMaterial)
+                    )
+                    .padding()
+                } else {
+                    HStack {
+                        Text(notes)
+                            .foregroundStyle(.white)
+                    }
+                    .padding()
+                    .frame(minWidth: 60)
+                    .frame(maxWidth: .infinity)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(.ultraThinMaterial)
+                    )                    .padding()
+                }
+            }
+
+            
             Spacer()
+            
+            // TODO: Update the food journal
             Button {
                 presentationMode.wrappedValue.dismiss()
+                Task {
+                    print("get \(selectedEntry.id)")
+                    try await viewModel.updatePostFoodInfo(entry: selectedEntry, fullness: selectedFullness, notes: notes)
+                }
+             
             } label: {
                 Text("Complete Journal")
                     .foregroundStyle(Color.white)
@@ -56,6 +106,7 @@ struct PostFoodCheckInView: View {
                         RoundedRectangle(cornerRadius: 20.0)
                             .fill(Color.green)
                     )
+                    .padding()
             }
             
             .navigationTitle("Post Food Check-In")
@@ -73,11 +124,13 @@ struct PostFoodCheckInView: View {
                 }
             }
         }
+        .sheet(isPresented: $showNotePage) {
+            AddNoteView(notes: $notes)
+        }
+        .onAppear {
+            print("get entry \(selectedEntry.id)")
+        }
     }
-}
-
-#Preview {
-    PostFoodCheckInView()
 }
 
 enum Mood: String, CaseIterable {

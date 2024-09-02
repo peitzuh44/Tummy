@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct MindfulEatingView: View {
-    @Binding var showPostFoodCheckIn: Bool
     
+    @Binding var showPostFoodCheckIn: Bool
     @Environment(\.presentationMode) var presentationMode
 
     @State private var isPlaying = false
@@ -50,9 +50,6 @@ struct MindfulEatingView: View {
                         }
                         Button {
                             presentationMode.wrappedValue.dismiss()
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                showPostFoodCheckIn = true
-                            }
                         } label: {
                             Text("Skip")
                                 .padding()

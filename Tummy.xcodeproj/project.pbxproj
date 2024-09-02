@@ -20,6 +20,7 @@
 		AF30B4F02C8481760035858F /* FoodEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4EF2C8481760035858F /* FoodEntryViewModel.swift */; };
 		AF30B4F22C8487BD0035858F /* FoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4F12C8487BD0035858F /* FoodEntry.swift */; };
 		AF30B4F72C84B0EC0035858F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4F62C84B0EC0035858F /* SettingsView.swift */; };
+		AF30B4FA2C84CFEC0035858F /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4F92C84CFEC0035858F /* AddNoteView.swift */; };
 		AF6B11432C6A0AD8007CD3E6 /* TummyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */; };
 		AF6B11472C6A0ADB007CD3E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */; };
 		AF6B114A2C6A0ADB007CD3E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11492C6A0ADB007CD3E6 /* Preview Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		AF30B4F12C8487BD0035858F /* FoodEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodEntry.swift; sourceTree = "<group>"; };
 		AF30B4F42C84ADC40035858F /* Tummy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Tummy.entitlements; path = ../../Tummy.entitlements; sourceTree = "<group>"; };
 		AF30B4F62C84B0EC0035858F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AF30B4F92C84CFEC0035858F /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
 		AF6B113F2C6A0AD8007CD3E6 /* Tummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TummyApp.swift; sourceTree = "<group>"; };
 		AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		AF30B4D22C81F49B0035858F /* Food Diary */ = {
 			isa = PBXGroup;
 			children = (
+				AF30B4F82C84CC1A0035858F /* Camera */,
 				AF30B4F52C84B0D70035858F /* Settings */,
 				AF30B4D32C81F4B50035858F /* FoodDiaryView.swift */,
 				AF30B4D72C82DD1E0035858F /* EntryDetailView.swift */,
@@ -162,6 +165,17 @@
 				AF30B4F62C84B0EC0035858F /* SettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		AF30B4F82C84CC1A0035858F /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				AF964B652C6F4306005B2301 /* PrefoodCheckInView.swift */,
+				AF964B672C6F4D05005B2301 /* MindfulEatingTimerView.swift */,
+				AF964B692C6F5736005B2301 /* PostFoodCheckInView.swift */,
+				AF30B4F92C84CFEC0035858F /* AddNoteView.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		AF6B11362C6A0AD8007CD3E6 = {
@@ -310,9 +324,6 @@
 		AF964B632C6F42DC005B2301 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				AF964B652C6F4306005B2301 /* PrefoodCheckInView.swift */,
-				AF964B672C6F4D05005B2301 /* MindfulEatingTimerView.swift */,
-				AF964B692C6F5736005B2301 /* PostFoodCheckInView.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -465,6 +476,7 @@
 				AF30B4F02C8481760035858F /* FoodEntryViewModel.swift in Sources */,
 				AF964B562C6CD7F3005B2301 /* Color.swift in Sources */,
 				AF964B332C6A5807005B2301 /* SearchBar.swift in Sources */,
+				AF30B4FA2C84CFEC0035858F /* AddNoteView.swift in Sources */,
 				AF964B542C6CD18A005B2301 /* HomePage.swift in Sources */,
 				AF964B752C705AFA005B2301 /* GenericPickerButton.swift in Sources */,
 				AF6B115F2C6A143B007CD3E6 /* WeekCalendar.swift in Sources */,

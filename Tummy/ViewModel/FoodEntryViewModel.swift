@@ -87,12 +87,12 @@ class FoodEntryViewModel: ObservableObject {
         allTags[index].isSelected.toggle()
         
         // Update the tag in Firestore
-          let tagRef = db.collection("Tags").document(tag.id)
-          do {
-              try tagRef.setData(from: allTags[index], merge: true)
-          } catch {
-              print("Error updating tag in Firestore: \(error)")
-          }
+        let tagRef = db.collection("Tags").document(tag.id)
+        do {
+            try tagRef.setData(from: allTags[index], merge: true)
+        } catch {
+            print("Error updating tag in Firestore: \(error)")
+        }
     }
     
     // MARK: Reset tags
@@ -116,13 +116,13 @@ class FoodEntryViewModel: ObservableObject {
                 batch.updateData(["isSelected": false], forDocument: tagRef)
             }
             try await batch.commit()
-                   print("Successfully reset isSelected for all tags.")
+            print("Successfully reset isSelected for all tags.")
             
         } catch {
             print("Error resetting tags: \(error.localizedDescription)")
-
+            
         }
-
+        
     }
     
     
@@ -162,16 +162,16 @@ extension FoodEntryViewModel {
             print("User not logged in")
             return []
         }
-
+        
         do {
             let snapshot = try await db.collection("Tags")
                 .whereField("createdBy", isEqualTo: user.uid)
                 .whereField("isSelected", isEqualTo: true)
                 .getDocuments()
-
+            
             let tags = snapshot.documents.compactMap { try? $0.data(as: Tag.self) }
             return tags
-
+            
         } catch {
             print("Error fetching documents: \(error.localizedDescription)")
             return []
@@ -183,19 +183,19 @@ extension FoodEntryViewModel {
             print("User not signed in")
             return
         }
-
+        
         let selectedTags = await fetchSelectedTags()
-
+        
         print("✅ Input Tags \(selectedTags)")
         let people = filterAndMapToString(tags: selectedTags, filter: .people)
         let locations = filterAndMapToString(tags: selectedTags, filter: .location)
         let reasons = filterAndMapToString(tags: selectedTags, filter: .reason)
         print("People: \(people) | Location: \(locations) | Reason: \(reasons)")
-
+        
         let entryRef = db.collection("FoodEntries").document()
         let entryID = entryRef.documentID
-        let entry = FoodEntry(id: entryID, createdBy: user.uid, isRealTime: true, photoURL: "none", textDescription: "none", hungerBefore: hungerBefore.number, time: Date(), mealType: "breakfast", location: locations, eatAlone: people.isEmpty, people: people, reason: reasons, fullnessAfter: 0, notes: "No notes for now")
-
+        let entry = FoodEntry(id: entryID, createdBy: user.uid, isRealTime: true, photoURL: "none", textDescription: "none", hungerBefore: hungerBefore.number, time: Date(), mealType: "breakfast", location: locations, eatAlone: people.isEmpty, people: people, reason: reasons, fullnessAfter: 0, notes: "No notes for now", postCompleted: false)
+        
         do {
             try entryRef.setData(from: entry)
             await resetTags()
@@ -204,65 +204,37 @@ extension FoodEntryViewModel {
         }
         
     }
-
-
-    // wait
-    
-//    // MARK: Fetch selected Tags
-//    
-//    func fetchSelectedTags(){
-//        guard let user = user else {
-//            print("User not login")
-//            return
-//        }
-//        
-//        listenerRegistration = db.collection("Tags")
-//            .whereField("createdBy", isEqualTo: user.uid)
-//            .whereField("isSelected", isEqualTo: true)
-//            .addSnapshotListener { [weak self] querySnapshot, error in
-//                guard let self = self else { return }
-//                guard let documents = querySnapshot?.documents, error == nil else {
-//                    print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
-//                    return
-//                }
-//                self.selectedTags = documents.compactMap { try? $0.data(as: Tag.self)}
-//            }
-//    }
-//
-//    
-//    
-//    // MARK: Create Entries
-//    func createEntry(hungerBefore: HungerScaleOption) {
-//        
-//        guard let user = user else {
-//            print("user not sign in")
-//            return
-//        }
-//        
-//        fetchSelectedTags()
-//        
-//        print("✅ Input Tags \(selectedTags)")
-//        let people = filterAndMapToString(tags: selectedTags, filter: .people)
-//        let locations = filterAndMapToString(tags: selectedTags, filter: .location)
-//        let reasons = filterAndMapToString(tags: selectedTags, filter: .reason)
-//        print("People: \(people) | Location: \(locations) | Reason: \(reasons)")
-//        
-//        
-//        let entryRef = db.collection("FoodEntries").document()
-//        let entryID = entryRef.documentID
-//        let entry = FoodEntry(id: entryID, createdBy: user.uid, isRealTime: true, photoURL: "none", textDescription: "none", hungerBefore: hungerBefore.number, time: Date(), mealType: "breakfast", location: locations, eatAlone: people.isEmpty, people: people, reason: reasons, fullnessAfter: 0, notes: "No notes for now")
-//        
-//        do {
-//            try entryRef.setData(from: entry)
-//        } catch {
-//            print("Error converting entry to data: \(error)")
-//        }
-//
-//    }
     
     func filterAndMapToString(tags: [Tag], filter category: TagCategory) -> [String] {
         let result = tags.filter {$0.category.lowercased() == category.rawValue.lowercased()}.map { $0.name}
         return result
+    }
+    
+    // MARK: Update post food info
+    
+    func updatePostFoodInfo(entry: FoodEntry, fullness: HungerScaleOption, notes: String) async throws {
+        
+        // Define the entry reference
+        let entryRef = db.collection("FoodEntries").document(entry.id)
+        
+        // Prepare the fields to be updated
+        let updatedFields: [String: Any] = [
+            "fullnessAfter": fullness.number,
+            "notes": notes,
+            "postCompleted": true
+        ]
+        
+        do {
+            try await entryRef.updateData(updatedFields)
+            print("Entry successfully updated!")
+            
+        } catch {
+            print("Error updating entry: \(error.localizedDescription)")
+            throw error
+        }
+        
+        
+        
     }
     
 }

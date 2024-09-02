@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct EntryDetailView: View {
+    
+    @StateObject var viewModel: FoodEntryViewModel
     var entry: FoodEntry
+    @State private var showPostMealSheet = false
 
     var body: some View {
         ScrollView {
@@ -24,6 +27,23 @@ struct EntryDetailView: View {
                         Rectangle()
                     )
                 
+                // MARK: Complete post meal button
+                if entry.postCompleted == false {
+                    Button {
+                        showPostMealSheet = true
+                    } label: {
+                        Text("post meal questionnarie")
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 60)
+                            .background(
+                                RoundedRectangle(cornerRadius: 20.0)
+                                    .fill(Color.accentColor)
+                            )
+                            .padding()
+                    }
+                }
+            
                 // Info
                 VStack(alignment: .leading){
                     HStack {
@@ -37,36 +57,6 @@ struct EntryDetailView: View {
                                     .font(.caption)
                             }
                             .padding(.bottom)
-                            
-//                            // People
-//                            VStack(alignment:.leading){
-//                                Text("People")
-//                                
-//                                Text("You ate your meal alone.")
-//                                    .font(.caption)
-//                            }
-//                            .padding(.vertical, 8)
-//                            
-//                            // Place
-//                            VStack(alignment:.leading){
-//                                Text("Place")
-//                                HStack {
-//                                    ForEach(locations) { location in
-//                                        ContextTag(contextTag: location)
-//                                    }
-//                                }
-//                            }
-//                            .padding(.vertical, 8)
-//                            // Place
-//                            VStack(alignment:.leading){
-//                                Text("Reason")
-//                                HStack {
-//                                    ForEach(reasons) { reason in
-//                                        ContextTag(contextTag: reason)
-//                                    }
-//                                }
-//                            }
-//                            .padding(.vertical, 8)
                             
                             // Notes
                             VStack (alignment: .leading){
@@ -91,6 +81,13 @@ struct EntryDetailView: View {
         }
         .ignoresSafeArea(.container)
         .scrollIndicators(.never)
+        
+        .fullScreenCover(isPresented: $showPostMealSheet, content: {
+            PostFoodCheckInView(viewModel: viewModel, selectedEntry: entry)
+        })
+        .onAppear {
+            print("Entry \(entry.id) passed in")
+        }
     }
 }
 

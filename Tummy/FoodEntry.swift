@@ -21,7 +21,8 @@ struct FoodEntry: Identifiable, Codable {
     var people: [String?]
     var reason: [String]
     var fullnessAfter: Int
-    var notes: String?
+    var notes: String
+    var postCompleted: Bool
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -38,6 +39,7 @@ struct FoodEntry: Identifiable, Codable {
         case fullnessAfter
         case reason
         case notes
+        case postCompleted
     }
     
     
