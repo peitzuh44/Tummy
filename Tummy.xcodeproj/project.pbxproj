@@ -21,6 +21,8 @@
 		AF30B4F22C8487BD0035858F /* FoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4F12C8487BD0035858F /* FoodEntry.swift */; };
 		AF30B4F72C84B0EC0035858F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4F62C84B0EC0035858F /* SettingsView.swift */; };
 		AF30B4FA2C84CFEC0035858F /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B4F92C84CFEC0035858F /* AddNoteView.swift */; };
+		AF30B5072C8588990035858F /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B5062C8588990035858F /* CameraView.swift */; };
+		AF30B50C2C858EAA0035858F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = AF30B50B2C858EAA0035858F /* FirebaseStorage */; };
 		AF6B11432C6A0AD8007CD3E6 /* TummyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */; };
 		AF6B11472C6A0ADB007CD3E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */; };
 		AF6B114A2C6A0ADB007CD3E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11492C6A0ADB007CD3E6 /* Preview Assets.xcassets */; };
@@ -53,8 +55,6 @@
 		AF964B7C2C709291005B2301 /* MindfulEatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B7B2C709290005B2301 /* MindfulEatingView.swift */; };
 		AF964B7F2C70935B005B2301 /* MindfulEating.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF964B7E2C70935B005B2301 /* MindfulEating.mp3 */; };
 		AF964B812C70A833005B2301 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF964B802C70A833005B2301 /* click.mp3 */; };
-		AF964B862C70E1FE005B2301 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B852C70E1FE005B2301 /* CameraPreview.swift */; };
-		AF964B882C70E22F005B2301 /* PhotoDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B872C70E22E005B2301 /* PhotoDisplayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +71,7 @@
 		AF30B4F42C84ADC40035858F /* Tummy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Tummy.entitlements; path = ../../Tummy.entitlements; sourceTree = "<group>"; };
 		AF30B4F62C84B0EC0035858F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AF30B4F92C84CFEC0035858F /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
+		AF30B5062C8588990035858F /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		AF6B113F2C6A0AD8007CD3E6 /* Tummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TummyApp.swift; sourceTree = "<group>"; };
 		AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,8 +105,6 @@
 		AF964B7B2C709290005B2301 /* MindfulEatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindfulEatingView.swift; sourceTree = "<group>"; };
 		AF964B7E2C70935B005B2301 /* MindfulEating.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MindfulEating.mp3; sourceTree = "<group>"; };
 		AF964B802C70A833005B2301 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
-		AF964B852C70E1FE005B2301 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
-		AF964B872C70E22E005B2301 /* PhotoDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDisplayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +114,7 @@
 			files = (
 				AF30B4DB2C8356560035858F /* FirebaseAuth in Frameworks */,
 				AF30B4DD2C8356560035858F /* FirebaseFirestore in Frameworks */,
+				AF30B50C2C858EAA0035858F /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,11 +178,19 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		AF30B50A2C858EAA0035858F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AF6B11362C6A0AD8007CD3E6 = {
 			isa = PBXGroup;
 			children = (
 				AF6B11412C6A0AD8007CD3E6 /* Tummy */,
 				AF6B11402C6A0AD8007CD3E6 /* Products */,
+				AF30B50A2C858EAA0035858F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -230,7 +238,6 @@
 			children = (
 				AF30B4D22C81F49B0035858F /* Food Diary */,
 				AF6B117D2C6A32B8007CD3E6 /* Home */,
-				AF964B6E2C6F6355005B2301 /* Insights */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,8 +322,7 @@
 				AF964B572C6D0933005B2301 /* DetailPage.swift */,
 				AF964B772C706C37005B2301 /* MindfulEatingWithTummyView.swift */,
 				AF964B7B2C709290005B2301 /* MindfulEatingView.swift */,
-				AF964B852C70E1FE005B2301 /* CameraPreview.swift */,
-				AF964B872C70E22E005B2301 /* PhotoDisplayView.swift */,
+				AF30B5062C8588990035858F /* CameraView.swift */,
 			);
 			path = "Temorary UI";
 			sourceTree = "<group>";
@@ -341,13 +347,6 @@
 				AF964B6F2C6F6400005B2301 /* WhySkipView.swift */,
 			);
 			path = Skip;
-			sourceTree = "<group>";
-		};
-		AF964B6E2C6F6355005B2301 /* Insights */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Insights;
 			sourceTree = "<group>";
 		};
 		AF964B762C706BF6005B2301 /* Model */ = {
@@ -386,6 +385,7 @@
 			packageProductDependencies = (
 				AF30B4DA2C8356560035858F /* FirebaseAuth */,
 				AF30B4DC2C8356560035858F /* FirebaseFirestore */,
+				AF30B50B2C858EAA0035858F /* FirebaseStorage */,
 			);
 			productName = Tummy;
 			productReference = AF6B113F2C6A0AD8007CD3E6 /* Tummy.app */;
@@ -458,7 +458,6 @@
 				AF964B382C6A5E01005B2301 /* HScrollPicker.swift in Sources */,
 				AF964B482C6C68BD005B2301 /* TaggingView.swift in Sources */,
 				AF964B3C2C6A61D1005B2301 /* TimeManager.swift in Sources */,
-				AF964B862C70E1FE005B2301 /* CameraPreview.swift in Sources */,
 				AF6B11432C6A0AD8007CD3E6 /* TummyApp.swift in Sources */,
 				AF964B732C704CE0005B2301 /* HungerScale.swift in Sources */,
 				AF30B4D82C82DD1E0035858F /* EntryDetailView.swift in Sources */,
@@ -480,9 +479,9 @@
 				AF964B542C6CD18A005B2301 /* HomePage.swift in Sources */,
 				AF964B752C705AFA005B2301 /* GenericPickerButton.swift in Sources */,
 				AF6B115F2C6A143B007CD3E6 /* WeekCalendar.swift in Sources */,
-				AF964B882C70E22F005B2301 /* PhotoDisplayView.swift in Sources */,
 				AF30B4D42C81F4B50035858F /* FoodDiaryView.swift in Sources */,
 				AF30B4E62C8383B80035858F /* SignInView.swift in Sources */,
+				AF30B5072C8588990035858F /* CameraView.swift in Sources */,
 				AF30B4F22C8487BD0035858F /* FoodEntry.swift in Sources */,
 				AF6B11532C6A0B3B007CD3E6 /* Position.swift in Sources */,
 				AF964B362C6A5AEE005B2301 /* MoodManager.swift in Sources */,
@@ -631,8 +630,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -669,8 +668,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -733,6 +732,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AF30B4D92C8356560035858F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		AF30B50B2C858EAA0035858F /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF30B4D92C8356560035858F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

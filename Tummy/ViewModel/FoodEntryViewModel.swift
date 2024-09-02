@@ -8,6 +8,8 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
+import UIKit
 
 
 class FoodEntryViewModel: ObservableObject {
@@ -178,7 +180,39 @@ extension FoodEntryViewModel {
         }
     }
     
-    func createEntry(hungerBefore: HungerScaleOption) async {
+    // Function to upload the image to Firebase Storage
+    func uploadImageToFirebase(image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference().child("foodPhotos/\(UUID().uuidString).jpg")
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            completion(.failure(NSError(domain: "ImageConversionError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unable to convert image to data"])))
+            return
+        }
+        
+        storageRef.putData(imageData, metadata: nil) { metadata, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            storageRef.downloadURL { url, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                guard let downloadURL = url else {
+                    completion(.failure(NSError(domain: "URLError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unable to retrieve download URL"])))
+                    return
+                }
+                
+                completion(.success(downloadURL.absoluteString))
+            }
+        }
+    }
+    // Update the createEntry function to include the image upload and URL storage
+    func createEntry(hungerBefore: HungerScaleOption, image: UIImage?) async {
         guard let user = user else {
             print("User not signed in")
             return
@@ -194,7 +228,24 @@ extension FoodEntryViewModel {
         
         let entryRef = db.collection("FoodEntries").document()
         let entryID = entryRef.documentID
-        let entry = FoodEntry(id: entryID, createdBy: user.uid, isRealTime: true, photoURL: "none", textDescription: "none", hungerBefore: hungerBefore.number, time: Date(), mealType: "breakfast", location: locations, eatAlone: people.isEmpty, people: people, reason: reasons, fullnessAfter: 0, notes: "No notes for now", postCompleted: false)
+        
+        var photoURL = "none"
+        
+        if let image = image {
+            await withCheckedContinuation { continuation in
+                uploadImageToFirebase(image: image) { result in
+                    switch result {
+                    case .success(let url):
+                        photoURL = url
+                    case .failure(let error):
+                        print("Error uploading image: \(error)")
+                    }
+                    continuation.resume()
+                }
+            }
+        }
+        
+        let entry = FoodEntry(id: entryID, createdBy: user.uid, isRealTime: true, photoURL: photoURL, textDescription: "none", hungerBefore: hungerBefore.number, time: Date(), mealType: "breakfast", location: locations, eatAlone: people.isEmpty, people: people, reason: reasons, fullnessAfter: 0, notes: "No notes for now", postCompleted: false)
         
         do {
             try entryRef.setData(from: entry)
@@ -202,9 +253,35 @@ extension FoodEntryViewModel {
         } catch {
             print("Error converting entry to data: \(error)")
         }
-        
     }
     
+//    func createEntry(hungerBefore: HungerScaleOption) async {
+//        guard let user = user else {
+//            print("User not signed in")
+//            return
+//        }
+//        
+//        let selectedTags = await fetchSelectedTags()
+//        
+//        print("✅ Input Tags \(selectedTags)")
+//        let people = filterAndMapToString(tags: selectedTags, filter: .people)
+//        let locations = filterAndMapToString(tags: selectedTags, filter: .location)
+//        let reasons = filterAndMapToString(tags: selectedTags, filter: .reason)
+//        print("People: \(people) | Location: \(locations) | Reason: \(reasons)")
+//        
+//        let entryRef = db.collection("FoodEntries").document()
+//        let entryID = entryRef.documentID
+//        let entry = FoodEntry(id: entryID, createdBy: user.uid, isRealTime: true, photoURL: "none", textDescription: "none", hungerBefore: hungerBefore.number, time: Date(), mealType: "breakfast", location: locations, eatAlone: people.isEmpty, people: people, reason: reasons, fullnessAfter: 0, notes: "No notes for now", postCompleted: false)
+//        
+//        do {
+//            try entryRef.setData(from: entry)
+//            await resetTags()
+//        } catch {
+//            print("Error converting entry to data: \(error)")
+//        }
+//        
+//    }
+//    
     func filterAndMapToString(tags: [Tag], filter category: TagCategory) -> [String] {
         let result = tags.filter {$0.category.lowercased() == category.rawValue.lowercased()}.map { $0.name}
         return result
@@ -238,3 +315,4 @@ extension FoodEntryViewModel {
     }
     
 }
+
