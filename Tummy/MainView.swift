@@ -12,10 +12,10 @@ struct MainView: View {
 
     var body: some View {
         TabView {
-//            HomePage()
+//            ContentView()
 //                .tabItem {
-//                    Image(systemName: "heart")
-//                    Text("Food")
+//                    Image(systemName: "camera")
+//                    Text("Camera")
 //                }
             FoodDiaryView(authManager: authManager)
                 .tabItem {

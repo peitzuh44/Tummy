@@ -21,6 +21,10 @@ struct FoodDiaryView: View {
     @State private var selectedDate: Date = Date()
     @State private var addTapped: Bool = false
     @State private var rotation: CGFloat = 0
+    
+    // Camera setup
+    @State private var image: UIImage?
+
     var body: some View {
         NavigationStack {
             ZStack (alignment: .bottomTrailing){
@@ -82,10 +86,14 @@ struct FoodDiaryView: View {
                 
                 
             }
-            // MARK: Sheets
-            .fullScreenCover(isPresented: $showCamera, content: {
-                PrefoodCheckInView(viewModel: viewModel, showMindfulEatingView: $showMindfulEatingView)
-            })
+            // MARK: Camera
+            .sheet(isPresented: $showCamera) {
+                CameraView(image: $image, showPrefoodCheckIn: $showPrefoodCheckIn)
+            }
+            .fullScreenCover(isPresented: $showPrefoodCheckIn) {
+                PrefoodCheckInView(viewModel: viewModel, showMindfulEatingView: $showMindfulEatingView, image: image ?? UIImage())
+            }
+
             // Camera - mindful eating with Tummy
             .fullScreenCover(isPresented: $showMindfulEatingView, content: {
                 MindfulEatingView(showPostFoodCheckIn: $showPostEatingCheckIn)

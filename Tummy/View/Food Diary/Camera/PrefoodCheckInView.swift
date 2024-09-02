@@ -18,17 +18,19 @@ struct PrefoodCheckInView: View {
     @State var selectedHunger: HungerScaleOption = .five
     @Binding var showMindfulEatingView: Bool
     
+    // Photo
+    var image: UIImage
+
+    
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack (spacing: 12){
                     // MARK: Meal Photo
-                    Image("Breakfast")
+                    Image(uiImage: image)
                         .resizable()
+                        .scaledToFit()
                         .frame(width: 300, height: 300)
-                        .clipShape(
-                            RoundedRectangle(cornerRadius: 20)
-                        )
                     
                     // MARK: Hunger Scale
                     GenericPickerButton(pickerText: "Hunger Scale", selectionText: selectedHunger.text, isPresenting: $showHungerScale) {
@@ -60,7 +62,7 @@ struct PrefoodCheckInView: View {
                     // MARK: Next Button
                     Button {
                         Task {
-                            await viewModel.createEntry(hungerBefore: selectedHunger)
+                            await viewModel.createEntry(hungerBefore: selectedHunger, image: image)
 
                         }
                         presentationMode.wrappedValue.dismiss()
@@ -99,6 +101,9 @@ struct PrefoodCheckInView: View {
 
                 }
             }
+        }
+        .onAppear {
+            print("get image: \(image)")
         }
     }
 }
