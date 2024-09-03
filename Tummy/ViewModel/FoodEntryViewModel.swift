@@ -189,8 +189,18 @@ extension FoodEntryViewModel {
             return
         }
         
+        let startOfDay = Calendar.current.startOfDay(for: date)
+        
+        guard let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay) else {
+            print("Error calculating end of day")
+            return
+        }
+        
         listenerRegistration = db.collection("FoodEntries")
             .whereField("createdBy", isEqualTo: user.uid)
+            .whereField("time", isGreaterThanOrEqualTo: startOfDay)
+            .whereField("time", isLessThan: endOfDay)
+            .order(by: "time", descending: false)
             .addSnapshotListener { [weak self] querySnapshot, error in
                 guard let self = self else { return }
                 guard let documents = querySnapshot?.documents, error == nil else {

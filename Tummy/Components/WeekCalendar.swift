@@ -11,6 +11,7 @@ struct WeekCalendar: View {
     
     @StateObject var manager: DateManager = DateManager()
     @Namespace var animation
+    @Binding var selectedDate: Date
     
     var body: some View {
         HStack {
@@ -32,9 +33,11 @@ struct WeekCalendar: View {
                         }
                     }
                 )
+                .frame(maxWidth: .infinity)
                 .onTapGesture {
                     withAnimation {
                         manager.currentDay = day
+                        selectedDate = day
                     }
                 }
             }
@@ -43,10 +46,3 @@ struct WeekCalendar: View {
     }
 }
 
-#Preview {
-    ZStack {
-        LinearGradient(colors: [Color.babyBlue, Color.babyPurple, Color.babyPink], startPoint: .topLeading, endPoint: .bottomTrailing)
-
-        WeekCalendar()
-    }
-}
