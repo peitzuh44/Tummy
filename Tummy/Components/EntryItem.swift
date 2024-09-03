@@ -142,7 +142,7 @@ struct EntryItem: View {
                 )
                 HStack {
                     Spacer()
-                    Text("Today 07:33pm")
+                    Text(entry.time.formatted())
                 }
                 .font(.caption2)
             }

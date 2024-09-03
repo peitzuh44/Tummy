@@ -47,3 +47,19 @@ class DateManager: ObservableObject {
         return calendar.isDate(currentDay, inSameDayAs: date)
     }
 }
+
+
+extension Date {
+    func formatted() -> String {
+        let formatter = DateFormatter()
+        let calendar = Calendar.current
+        
+        if calendar.isDateInToday(self) {
+            formatter.dateFormat = "'Today' h:mm a"
+        } else {
+            formatter.dateFormat = "MM-dd h:mm a"
+        }
+        
+        return formatter.string(from: self)
+    }
+}
