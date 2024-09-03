@@ -11,6 +11,7 @@ struct EntryItem: View {
     var entry: FoodEntry
     @ObservedObject var viewModel: FoodEntryViewModel
     @State private var isActive = false
+    @State private var animateBlinking = false
 
     var icon: String {
         switch entry.mealType.lowercased() {
@@ -35,12 +36,19 @@ struct EntryItem: View {
             }) {
                 VStack {
                     if entry.postCompleted == false {
-                        HStack {
-                            Spacer()
-                            Text("Post meal questionnaire >>")
-                                .font(.caption)
-                        }
-                    }
+                                          HStack {
+                                              Spacer()
+                                              Text("Post meal questionnaire >>")
+                                                  .font(.caption)
+                                                  .opacity(animateBlinking ? 0.3 : 1.0)
+                                                  .onAppear {
+                                                 
+                                                      withAnimation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true)) {
+                                                          animateBlinking.toggle()
+                                                      }
+                                                  }
+                                          }
+                                      }
                     VStack {
                         HStack (spacing: 16){
                             VStack {
