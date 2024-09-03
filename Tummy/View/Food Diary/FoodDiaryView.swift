@@ -29,7 +29,8 @@ struct FoodDiaryView: View {
         NavigationStack {
             ZStack (alignment: .bottomTrailing){
                 Color(.systemBackground).ignoresSafeArea(.all)
-                VStack{
+                VStack(alignment: .center){
+                    WeekCalendar(selectedDate: $selectedDate)
                     ScrollView {
                         VStack(spacing: 16){
                             ForEach(viewModel.foodEntries) { entry in
@@ -114,6 +115,9 @@ struct FoodDiaryView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {
+            viewModel.fetchEntries(date: selectedDate)
+        }
+        .onChange(of: selectedDate) { newValue in
             viewModel.fetchEntries(date: selectedDate)
         }
     }
