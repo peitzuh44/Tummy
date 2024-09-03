@@ -28,6 +28,7 @@
 		AF30B5122C86C7050035858F /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B5112C86C7050035858F /* HapticManager.swift */; };
 		AF30B5142C874CF60035858F /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B5132C874CF60035858F /* PhotoPicker.swift */; };
 		AF30B5182C87647C0035858F /* PostMealSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B5172C87647C0035858F /* PostMealSheet.swift */; };
+		AF30B51A2C8776D50035858F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B5192C8776D50035858F /* String.swift */; };
 		AF6B11432C6A0AD8007CD3E6 /* TummyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */; };
 		AF6B11472C6A0ADB007CD3E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */; };
 		AF6B114A2C6A0ADB007CD3E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11492C6A0ADB007CD3E6 /* Preview Assets.xcassets */; };
@@ -80,6 +81,7 @@
 		AF30B5132C874CF60035858F /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		AF30B5152C874E050035858F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AF30B5172C87647C0035858F /* PostMealSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMealSheet.swift; sourceTree = "<group>"; };
+		AF30B5192C8776D50035858F /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		AF6B113F2C6A0AD8007CD3E6 /* Tummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TummyApp.swift; sourceTree = "<group>"; };
 		AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				AF6B11522C6A0B3B007CD3E6 /* Position.swift */,
 				AF6B11562C6A0CC4007CD3E6 /* DateManager.swift */,
 				AF964B552C6CD7F3005B2301 /* Color.swift */,
+				AF30B5192C8776D50035858F /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -381,7 +384,7 @@
 		AF6B11372C6A0AD8007CD3E6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
@@ -433,6 +436,7 @@
 			files = (
 				AF6B11632C6A187E007CD3E6 /* MainView.swift in Sources */,
 				AF30B4E42C83838A0035858F /* AuthView.swift in Sources */,
+				AF30B51A2C8776D50035858F /* String.swift in Sources */,
 				AF964B682C6F4D05005B2301 /* MindfulEatingTimerView.swift in Sources */,
 				AF964B502C6C8FC4005B2301 /* Chip.swift in Sources */,
 				AF964B6A2C6F5736005B2301 /* PostFoodCheckInView.swift in Sources */,
@@ -531,7 +535,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -588,7 +592,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

@@ -19,17 +19,15 @@ struct ChipTextField: View {
     
     var body: some View {
         ZStack {
-            Text(name == "" ? title : name)
+            Text(name.isEmpty ? title : name)
                 .background(GlobalGeometryGetter(rect: $textRect)).layoutPriority(1).opacity(0)
             HStack {
                 TextField(title, text: $name)
                     .font(.callout)
                     .onSubmit {
-                        viewModel.createTag(name: name, category: category)
-                        name = ""
-                        
+                        submitText()
                     }
-                .frame(width: textRect.width)
+                    .frame(width: textRect.width)
             }
             .padding(.horizontal)
             .padding(.vertical, 10)
@@ -39,25 +37,43 @@ struct ChipTextField: View {
             )
         }
     }
-
-
+    
+    // MARK: private function
+    private func submitText() {
+        let trimmedName = name.trimmed()
+        
+        // Check if the trimmed input is not empty
+        guard trimmedName.isNotEmptyAfterTrimming else {
+            // If empty or only whitespace, just dismiss keyboard and do nothing
+            name = ""
+            return
+        }
+        
+        // If the input is valid, create a new tag
+        viewModel.createTag(name: trimmedName, category: category)
+        
+        // Clear the input field after submission
+        name = ""
+    }
+    
+    
 }
 
 
 struct GlobalGeometryGetter: View {
     @Binding var rect: CGRect
-
+    
     var body: some View {
         return GeometryReader { geometry in
             self.makeView(geometry: geometry)
         }
     }
-
+    
     func makeView(geometry: GeometryProxy) -> some View {
         DispatchQueue.main.async {
             self.rect = geometry.frame(in: .global)
         }
-
+        
         return Rectangle().fill(Color.clear)
     }
 }
