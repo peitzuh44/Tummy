@@ -22,9 +22,10 @@ class FoodEntryViewModel: ObservableObject {
     @Published var images: [String: UIImage] = [:]
 
     
+    
     // Init firebase firestore
     let db = Firestore.firestore()
-    let user = Auth.auth().currentUser
+    @Published var user = Auth.auth().currentUser
     private var listenerRegistration: ListenerRegistration?
     
     func loadImage(for entry: FoodEntry) async {
@@ -311,6 +312,75 @@ extension FoodEntryViewModel {
             fullnessAfter: 0,
             notes: "No notes for now",
             postCompleted: false
+        )
+        
+        do {
+            // Create the FoodEntry document
+            print("Creating FoodEntry with ID: \(entryID)")
+            try entryRef.setData(from: entry)
+            print("FoodEntry created successfully")
+            // Add each FoodItem as a sub-collection
+            for foodItem in foodItems {
+                print("Adding FoodItem with ID: \(foodItem.id) to FoodEntry with ID: \(entryID)")
+                let itemRef = entryRef.collection("FoodItems").document(foodItem.id)
+                try itemRef.setData(from: foodItem)
+                print("FoodItem added successfully")
+            }
+            
+            await resetTags()
+        } catch {
+            print("Error creating entry or adding food items: \(error)")
+        }
+    }
+    
+    func createPastEntry(hungerBefore: HungerScaleOption, image: UIImage?, meal: Meal, foodItems: [FoodItem], fullnessAfter: HungerScaleOption, notes: String) async {
+        guard let user = user else {
+            print("User not signed in")
+            return
+        }
+        
+        let selectedTags = await fetchSelectedTags()
+        
+        print("✅ Input Tags \(selectedTags)")
+        let people = filterAndMapToString(tags: selectedTags, filter: .people)
+        let locations = filterAndMapToString(tags: selectedTags, filter: .location)
+        let reasons = filterAndMapToString(tags: selectedTags, filter: .reason)
+        print("People: \(people) | Location: \(locations) | Reason: \(reasons)")
+        
+        let entryRef = db.collection("FoodEntries").document()
+        let entryID = entryRef.documentID
+        
+        var photoURL = "none"
+        
+        if let image = image {
+            await withCheckedContinuation { continuation in
+                uploadImageToFirebase(image: image) { result in
+                    switch result {
+                    case .success(let url):
+                        photoURL = url
+                    case .failure(let error):
+                        print("Error uploading image: \(error)")
+                    }
+                    continuation.resume()
+                }
+            }
+        }
+        
+        let entry = FoodEntry(
+            id: entryID,
+            createdBy: user.uid,
+            isRealTime: false,
+            photoURL: photoURL,
+            hungerBefore: hungerBefore.number,
+            time: Date(),
+            mealType: meal.text,
+            location: locations,
+            eatAlone: people.isEmpty,
+            people: people,
+            reason: reasons,
+            fullnessAfter: fullnessAfter.number,
+            notes: notes,
+            postCompleted: true
         )
         
         do {

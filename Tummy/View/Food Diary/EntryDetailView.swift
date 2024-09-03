@@ -6,13 +6,29 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct EntryDetailView: View {
     
     @ObservedObject var viewModel: FoodEntryViewModel
     var entry: FoodEntry
     @State private var showPostMealSheet = false
-
+    
+    var icon: String {
+        switch entry.mealType.lowercased() {
+        case "breakfast":
+            return "sun.horizon"
+        case "lunch":
+            return "sun.max"
+        case "dinner":
+            return "moon.stars"
+        case "snack":
+            return "cup.and.saucer"
+        default:
+            return "questionmark.circle"
+        }
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading){
@@ -57,37 +73,83 @@ struct EntryDetailView: View {
                 
                 // Info
                 VStack(alignment: .leading){
-                    HStack {
-                        VStack (alignment: .leading){
-                            VStack(alignment: .leading){
-                                Text("\(entry.mealType)")
-                                    .font(.title2)
-                                Text(entry.time.formatted())
-                                    .font(.caption)
-                                Text("\(entry.people) | \(entry.location) | \(entry.reason)")
-                                    .font(.caption)
-                                Text("Hunger before meal \(entry.hungerBefore)")
-                                if entry.postCompleted {
-                                    Text("Fullness after meal \(entry.fullnessAfter)")
+                    VStack (alignment: .leading){
+                        VStack(alignment: .leading){
+                            HStack {
+                                Image(systemName: icon)
+                                Text("Your \(entry.mealType)")
+                                    .font(.title)
+                                    .fontWeight(.semibold)
+                            }
+                            Text(entry.time.formatted())
+                            // MARK: Context
+                            Divider()
+                            VStack (alignment: .leading, spacing: 12){
+                                Text("Context")
+                                    .font(.title3)
+                                // People
+                                if !entry.people.isEmpty {
+                                    HStack {
+                                        Text("People")
+                                        ScrollView(.horizontal){
+                                            HStack {
+                                                ForEach(entry.people, id: \.self) { tag in
+                                                    ContextStringTag(text: tag ?? "You ate alone.")
+                                                }
+                                            }
+                                        }
+                                        .scrollIndicators(.hidden)
+                                    }
+                                } else {
+                                    Text("You ate alone")
                                 }
-
+                                // Location
+                                HStack {
+                                    Text("Place")
+                                    ScrollView(.horizontal){
+                                        HStack {
+                                            ForEach(entry.location, id: \.self) { tag in
+                                                ContextStringTag(text: tag)
+                                            }
+                                        }
+                                    }
+                                    .scrollIndicators(.hidden)
+                                }
+                                // Reason
+                                HStack {
+                                    Text("Reason")
+                                    ScrollView(.horizontal){
+                                        HStack {
+                                            ForEach(entry.reason, id: \.self) { tag in
+                                                ContextStringTag(text: tag)
+                                            }
+                                        }
+                                    }
+                                    .scrollIndicators(.hidden)
+                                }
                             }
-                            .padding(.bottom)
                             
-                            // Notes
-                            VStack (alignment: .leading){
-                                Text("✏️ Notes")
-                                Text("\(entry.notes)")
-                            }
+                            Text("Hunger before meal \(entry.hungerBefore)")
                             
-                            VStack {
-                                
+                            if entry.postCompleted {
+                                Text("Fullness after meal \(entry.fullnessAfter)")
                             }
-                            .frame(height: 70)
                             
                         }
-                      
-                        Spacer()
+                        .padding(.bottom)
+                        Divider()
+                        // Notes
+                        VStack (alignment: .leading, spacing: 12){
+                            Text("✏️ Notes")
+                                .font(.title3)
+                            Text("\(entry.notes)")
+                        }
+                        
+                        VStack {
+                            
+                        }
+                        .frame(height: 70)
+                        
                     }
                     .padding()
                     
@@ -104,7 +166,7 @@ struct EntryDetailView: View {
                 } label: {
                     Text("Edit")
                 }
-
+                
             }
             
             ToolbarItem(placement: .topBarTrailing) {
@@ -114,7 +176,7 @@ struct EntryDetailView: View {
                     Text("Delete")
                         .foregroundStyle(Color.red)
                 }
-
+                
             }
         }
         .navigationBarTitleDisplayMode(.large)
@@ -125,7 +187,7 @@ struct EntryDetailView: View {
             print("Entry \(entry.id) passed in")
         }
         .task {
-        await viewModel.loadImage(for: entry)
+            await viewModel.loadImage(for: entry)
         }
     }
 }

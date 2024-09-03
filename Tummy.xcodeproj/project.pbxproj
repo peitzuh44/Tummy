@@ -26,6 +26,8 @@
 		AF30B50E2C85AF1D0035858F /* ContextTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B50D2C85AF1D0035858F /* ContextTag.swift */; };
 		AF30B5102C8610C20035858F /* AddFoodItemSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B50F2C8610C20035858F /* AddFoodItemSheet.swift */; };
 		AF30B5122C86C7050035858F /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B5112C86C7050035858F /* HapticManager.swift */; };
+		AF30B5142C874CF60035858F /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B5132C874CF60035858F /* PhotoPicker.swift */; };
+		AF30B5182C87647C0035858F /* PostMealSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B5172C87647C0035858F /* PostMealSheet.swift */; };
 		AF6B11432C6A0AD8007CD3E6 /* TummyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */; };
 		AF6B11472C6A0ADB007CD3E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */; };
 		AF6B114A2C6A0ADB007CD3E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6B11492C6A0ADB007CD3E6 /* Preview Assets.xcassets */; };
@@ -75,6 +77,9 @@
 		AF30B50D2C85AF1D0035858F /* ContextTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTag.swift; sourceTree = "<group>"; };
 		AF30B50F2C8610C20035858F /* AddFoodItemSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodItemSheet.swift; sourceTree = "<group>"; };
 		AF30B5112C86C7050035858F /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		AF30B5132C874CF60035858F /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		AF30B5152C874E050035858F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AF30B5172C87647C0035858F /* PostMealSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMealSheet.swift; sourceTree = "<group>"; };
 		AF6B113F2C6A0AD8007CD3E6 /* Tummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TummyApp.swift; sourceTree = "<group>"; };
 		AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,6 +129,7 @@
 		AF30B4D22C81F49B0035858F /* Food Diary */ = {
 			isa = PBXGroup;
 			children = (
+				AF30B5162C87645D0035858F /* Photo Library */,
 				AF30B4F82C84CC1A0035858F /* Camera */,
 				AF30B4F52C84B0D70035858F /* Settings */,
 				AF30B4D32C81F4B50035858F /* FoodDiaryView.swift */,
@@ -186,6 +192,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AF30B5162C87645D0035858F /* Photo Library */ = {
+			isa = PBXGroup;
+			children = (
+				AF30B5172C87647C0035858F /* PostMealSheet.swift */,
+			);
+			path = "Photo Library";
+			sourceTree = "<group>";
+		};
 		AF6B11362C6A0AD8007CD3E6 = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +220,7 @@
 		AF6B11412C6A0AD8007CD3E6 /* Tummy */ = {
 			isa = PBXGroup;
 			children = (
+				AF30B5152C874E050035858F /* Info.plist */,
 				AF30B4F42C84ADC40035858F /* Tummy.entitlements */,
 				AF30B4E02C8357CD0035858F /* GoogleService-Info.plist */,
 				AF6B11622C6A187E007CD3E6 /* MainView.swift */,
@@ -313,6 +328,7 @@
 				AF964B772C706C37005B2301 /* MindfulEatingWithTummyView.swift */,
 				AF964B7B2C709290005B2301 /* MindfulEatingView.swift */,
 				AF30B5062C8588990035858F /* CameraView.swift */,
+				AF30B5132C874CF60035858F /* PhotoPicker.swift */,
 			);
 			path = "Temorary UI";
 			sourceTree = "<group>";
@@ -443,11 +459,13 @@
 				AF964B332C6A5807005B2301 /* SearchBar.swift in Sources */,
 				AF30B5122C86C7050035858F /* HapticManager.swift in Sources */,
 				AF30B4FA2C84CFEC0035858F /* AddNoteView.swift in Sources */,
+				AF30B5182C87647C0035858F /* PostMealSheet.swift in Sources */,
 				AF30B50E2C85AF1D0035858F /* ContextTag.swift in Sources */,
 				AF964B752C705AFA005B2301 /* GenericPickerButton.swift in Sources */,
 				AF6B115F2C6A143B007CD3E6 /* WeekCalendar.swift in Sources */,
 				AF30B4D42C81F4B50035858F /* FoodDiaryView.swift in Sources */,
 				AF30B4E62C8383B80035858F /* SignInView.swift in Sources */,
+				AF30B5142C874CF60035858F /* PhotoPicker.swift in Sources */,
 				AF30B5072C8588990035858F /* CameraView.swift in Sources */,
 				AF30B4F22C8487BD0035858F /* FoodEntry.swift in Sources */,
 				AF6B11532C6A0B3B007CD3E6 /* Position.swift in Sources */,
@@ -592,9 +610,11 @@
 				DEVELOPMENT_TEAM = N5MYS96KJV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tummy/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Tummy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We will need to access your camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to your photo library to allow you to choose and view photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -630,9 +650,11 @@
 				DEVELOPMENT_TEAM = N5MYS96KJV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tummy/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Tummy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We will need to access your camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to your photo library to allow you to choose and view photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

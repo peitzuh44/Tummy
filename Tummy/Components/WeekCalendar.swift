@@ -38,6 +38,7 @@ struct WeekCalendar: View {
                     withAnimation {
                         manager.currentDay = day
                         selectedDate = day
+                        HapticManager.instance.impact(style: .light)
                     }
                 }
             }

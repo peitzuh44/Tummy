@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import PhotosUI
+
 
 // Date selector
 struct FoodDiaryView: View {
@@ -19,8 +21,11 @@ struct FoodDiaryView: View {
     @State private var showMindfulEatingView: Bool = false
     @State private var showPostEatingCheckIn: Bool = false
     @State private var selectedDate: Date = Date()
-    @State private var addTapped: Bool = false
-    @State private var rotation: CGFloat = 0
+    
+    @State private var selectedImage: UIImage?
+    @State private var showPicker = false
+    @State private var showPastMealSheet = false
+
     
     // Camera setup
     @State private var image: UIImage?
@@ -45,18 +50,16 @@ struct FoodDiaryView: View {
                 
                 Menu {
                     Button {
-                        withAnimation {
-                            addTapped.toggle()
-                            showCamera = true
-                        }
+                        HapticManager.instance.impact(style: .light)
+                        showCamera = true
+                        
                     } label: {
                         Image(systemName: "camera")
                         Text("Camera")
                     }
                     Button {
-                        withAnimation {
-                            addTapped.toggle()
-                        }
+                        HapticManager.instance.impact(style: .light)
+                        showPicker = true
                     } label: {
                         Text("Past Meal")
                         
@@ -74,16 +77,11 @@ struct FoodDiaryView: View {
                             .fill(Color.pink))
                     
                 }
-                .rotationEffect(
-                    addTapped ? Angle(degrees: 45) : Angle(degrees: 0)
-                )
                 .onTapGesture {
-                    withAnimation {
-                        addTapped.toggle()
-                    }
+                    HapticManager.instance.impact(style: .light)
+
                 }
                 .padding()
-                
                 
                 
             }
@@ -99,6 +97,18 @@ struct FoodDiaryView: View {
             .fullScreenCover(isPresented: $showMindfulEatingView, content: {
                 MindfulEatingView(showPostFoodCheckIn: $showPostEatingCheckIn)
             })
+            
+            // Photo picker
+            .fullScreenCover(isPresented: $showPicker) {
+                            PhotoPicker(selectedImage: $selectedImage)
+                    }
+            
+            .fullScreenCover(isPresented: $showPastMealSheet) {
+                        if let selectedImage = selectedImage {
+                            PostMealSheet(viewModel: viewModel, image: selectedImage)
+                        }
+                    }
+            
            
             .toolbar {
                 ToolbarItem (placement: .topBarTrailing){
@@ -120,9 +130,13 @@ struct FoodDiaryView: View {
         .onChange(of: selectedDate) { newValue in
             viewModel.fetchEntries(date: selectedDate)
         }
+        .onChange(of: selectedImage) { newValue in
+                       if newValue != nil {
+                           showPastMealSheet = true
+                       }
+                   }
     }
 }
 
 
 // Post Components
-
