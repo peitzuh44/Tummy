@@ -39,36 +39,45 @@ struct EntryDetailView: View {
                     Button {
                         showPostMealSheet = true
                     } label: {
-                        Text("post meal questionnarie")
-                            .foregroundStyle(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 60)
-                            .background(
-                                RoundedRectangle(cornerRadius: 20.0)
-                                    .fill(Color.accentColor)
-                            )
-                            .padding()
+                        HStack {
+                            Image(systemName: "list.clipboard")
+                            Text("post meal questionnarie")
+                        }
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 60)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20.0)
+                                .fill(Color.accentColor)
+                        )
+                        .padding()
                     }
                 }
-            
+                
                 // Info
                 VStack(alignment: .leading){
                     HStack {
                         VStack (alignment: .leading){
                             VStack(alignment: .leading){
-                                Text("Pei's breakfast")
+                                Text("\(entry.mealType)")
                                     .font(.title2)
-                                Text("August 30, 2024 12:34pm")
+                                Text(entry.time.formatted())
                                     .font(.caption)
-                                Text("School | Ryan Ma | Social")
+                                Text("\(entry.people) | \(entry.location) | \(entry.reason)")
                                     .font(.caption)
+                                Text("Hunger before meal \(entry.hungerBefore)")
+                                if entry.postCompleted {
+                                    Text("Fullness after meal \(entry.fullnessAfter)")
+                                }
+
                             }
                             .padding(.bottom)
                             
                             // Notes
                             VStack (alignment: .leading){
-                                Text("Notes")
-                                Text("I really enjoy the food.")
+                                Text("✏️ Notes")
+                                Text("\(entry.notes)")
                             }
                             
                             VStack {
@@ -88,7 +97,27 @@ struct EntryDetailView: View {
         }
         .ignoresSafeArea(.container)
         .scrollIndicators(.never)
-        
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    //
+                } label: {
+                    Text("Edit")
+                }
+
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    //
+                } label: {
+                    Text("Delete")
+                        .foregroundStyle(Color.red)
+                }
+
+            }
+        }
+        .navigationBarTitleDisplayMode(.large)
         .fullScreenCover(isPresented: $showPostMealSheet, content: {
             PostFoodCheckInView(viewModel: viewModel, selectedEntry: entry)
         })

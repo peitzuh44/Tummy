@@ -28,7 +28,9 @@ struct TaggingView: View {
                     tag in
                     Chip(tag: tag)
                         .onTapGesture {
+                            HapticManager.instance.impact(style: .soft)
                             viewModel.toggleTags(tag: tag)
+            
                         }
                 }
             }
