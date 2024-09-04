@@ -9,32 +9,13 @@ import SwiftUI
 import FirebaseAuth
 
 struct EntryDetailView: View {
-    
     @ObservedObject var viewModel: FoodEntryViewModel
     var entry: FoodEntry
     @State private var showPostMealSheet = false
-    
-    var icon: String {
-        switch entry.mealType.lowercased() {
-        case "breakfast":
-            return "sun.horizon"
-        case "lunch":
-            return "sun.max"
-        case "dinner":
-            return "moon.stars"
-        case "snack":
-            return "cup.and.saucer"
-        default:
-            return "questionmark.circle"
-        }
-    }
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading){
-                
-                // Food Photo
-                
+                // MARK: Food Photo
                 if let image = viewModel.image(for: entry) {
                     Image(uiImage: image)
                         .resizable()
@@ -48,141 +29,68 @@ struct EntryDetailView: View {
                     ProgressView()
                         .frame(height: 150)
                 }
-                
-                
                 // MARK: Complete post meal button
                 if entry.postCompleted == false {
-                    Button {
-                        showPostMealSheet = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "list.clipboard")
-                            Text("post meal questionnarie")
-                        }
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 60)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20.0)
-                                .fill(Color.accentColor)
-                        )
-                        .padding()
-                    }
+                    PostMealQuestionnaireButton(showPostMealSheet: $showPostMealSheet)
                 }
-                
                 // Info
-                VStack(alignment: .leading){
-                    VStack (alignment: .leading){
-                        VStack(alignment: .leading){
-                            HStack {
-                                Image(systemName: icon)
-                                Text("Your \(entry.mealType)")
-                                    .font(.title)
-                                    .fontWeight(.semibold)
-                            }
-                            Text(entry.time.formatted())
-                            // MARK: Context
-                            Divider()
-                            VStack (alignment: .leading, spacing: 12){
-                                Text("Context")
-                                    .font(.title3)
-                                // People
-                                if !entry.people.isEmpty {
-                                    HStack {
-                                        Text("People")
-                                        ScrollView(.horizontal){
-                                            HStack {
-                                                ForEach(entry.people, id: \.self) { tag in
-                                                    ContextStringTag(text: tag ?? "You ate alone.")
-                                                }
-                                            }
-                                        }
-                                        .scrollIndicators(.hidden)
-                                    }
-                                } else {
-                                    Text("You ate alone")
-                                }
-                                // Location
-                                HStack {
-                                    Text("Place")
-                                    ScrollView(.horizontal){
-                                        HStack {
-                                            ForEach(entry.location, id: \.self) { tag in
-                                                ContextStringTag(text: tag)
-                                            }
-                                        }
-                                    }
-                                    .scrollIndicators(.hidden)
-                                }
-                                // Reason
-                                HStack {
-                                    Text("Reason")
-                                    ScrollView(.horizontal){
-                                        HStack {
-                                            ForEach(entry.reason, id: \.self) { tag in
-                                                ContextStringTag(text: tag)
-                                            }
-                                        }
-                                    }
-                                    .scrollIndicators(.hidden)
-                                }
-                            }
-                            
-                            Text("Hunger before meal \(entry.hungerBefore)")
-                            
-                            if entry.postCompleted {
-                                Text("Fullness after meal \(entry.fullnessAfter)")
-                            }
-                            
+                VStack (alignment: .leading){
+                    VStack(alignment: .leading){
+                        HStack {
+                            Image(systemName: entry.mealTypeIcon)
+                            Text("Your \(entry.mealType)")
+                                .font(.title)
+                                .fontWeight(.semibold)
                         }
-                        .padding(.bottom)
+                        Text(entry.time.formatted())
+                        // MARK: Context
                         Divider()
-                        // Notes
                         VStack (alignment: .leading, spacing: 12){
-                            Text("✏️ Notes")
+                            Text("Context")
                                 .font(.title3)
-                            Text("\(entry.notes)")
+                            if !entry.people.isEmpty {
+                                ContextDisplay(entry: entry, keyPath: \.people, title: "People")
+                            } else {
+                                Text("You ate alone")
+                            }
+                            ContextDisplay(entry: entry, keyPath: \.location, title: "Place")
+                            ContextDisplay(entry: entry, keyPath: \.reason, title: "Reason")
                         }
-                        
-                        VStack {
-                            
+                        Text("Hunger before meal \(entry.hungerBefore)")
+                        if entry.postCompleted {
+                            Text("Fullness after meal \(entry.fullnessAfter)")
                         }
-                        .frame(height: 70)
-                        
                     }
-                    .padding()
-                    
+                    .padding(.bottom)
+                    Divider()
+                    // Notes
+                    VStack (alignment: .leading, spacing: 12){
+                        Text("✏️ Notes")
+                            .font(.title3)
+                        Text("\(entry.notes)")
+                    }
+                    // Bottom space
+                    VStack {}.frame(height: 70)
                 }
+                .padding()
                 .frame(maxWidth: .infinity)
             }
         }
-        .ignoresSafeArea(.container)
+        .ignoresSafeArea(.all)
         .scrollIndicators(.never)
+        // MARK: Nav Bar
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    //
-                } label: {
-                    Text("Edit")
-                }
-                
+                ActionMenu()
             }
-            
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    //
-                } label: {
-                    Text("Delete")
-                        .foregroundStyle(Color.red)
-                }
-                
-            }
+         
         }
         .navigationBarTitleDisplayMode(.large)
+        // MARK: Sheets
         .fullScreenCover(isPresented: $showPostMealSheet, content: {
             PostFoodCheckInView(viewModel: viewModel, selectedEntry: entry)
         })
+        // MARK: Fetching & Concurrency
         .onAppear {
             print("Entry \(entry.id) passed in")
         }
@@ -192,3 +100,79 @@ struct EntryDetailView: View {
     }
 }
 
+
+struct ContextDisplay<T: Hashable>: View {
+    var entry: FoodEntry
+    var keyPath: KeyPath<FoodEntry, [T]>
+    var title: String
+    var body: some View {
+        HStack {
+            Text(title)
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(entry[keyPath: keyPath], id: \.self) { tag in
+                        ContextStringTag(text: unwrap(tag))
+                    }
+                }
+            }
+            .scrollIndicators(.hidden)
+        }
+    }
+    
+    // Helper function to unwrap optional values or return "Unknown" if nil
+    private func unwrap(_ tag: T) -> String {
+        if let tag = tag as? String {
+            return tag
+        } else if let tag = tag as? Optional<String> {
+            return tag ?? "Unknown"
+        } else {
+            return String(describing: tag) // Handle other types generically
+        }
+    }
+}
+
+struct ActionMenu: View {
+    var body: some View {
+        Menu {
+            Button {
+                //
+            } label: {
+                Text("Edit")
+            }
+            Button {
+                //
+            } label: {
+                Text("Delete")
+                    .foregroundStyle(Color.red)
+            }
+        } label: {
+            Image(systemName: "ellipsis.circle")
+        }
+
+    }
+}
+
+struct PostMealQuestionnaireButton: View {
+    
+    @Binding var showPostMealSheet: Bool
+    
+    var body: some View {
+        Button {
+            showPostMealSheet = true
+        } label: {
+            HStack {
+                Image(systemName: "list.clipboard")
+                Text("post meal questionnarie")
+            }
+            .font(.headline)
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 60)
+            .background(
+                RoundedRectangle(cornerRadius: 20.0)
+                    .fill(Color.accentColor)
+            )
+            .padding()
+        }
+    }
+}

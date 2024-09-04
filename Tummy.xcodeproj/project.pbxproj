@@ -197,6 +197,7 @@
 		AF30B5162C87645D0035858F /* Photo Library */ = {
 			isa = PBXGroup;
 			children = (
+				AF30B5132C874CF60035858F /* PhotoPicker.swift */,
 				AF30B5172C87647C0035858F /* PostMealSheet.swift */,
 			);
 			path = "Photo Library";
@@ -331,7 +332,6 @@
 				AF964B772C706C37005B2301 /* MindfulEatingWithTummyView.swift */,
 				AF964B7B2C709290005B2301 /* MindfulEatingView.swift */,
 				AF30B5062C8588990035858F /* CameraView.swift */,
-				AF30B5132C874CF60035858F /* PhotoPicker.swift */,
 			);
 			path = "Temorary UI";
 			sourceTree = "<group>";

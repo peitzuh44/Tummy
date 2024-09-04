@@ -57,3 +57,20 @@ struct FoodItem: Identifiable, Codable {
         case unit
     }
 }
+
+extension FoodEntry {
+    var mealTypeIcon: String {
+        switch mealType.lowercased() {
+        case "breakfast":
+            return "sun.horizon"
+        case "lunch":
+            return "sun.max"
+        case "dinner":
+            return "moon.stars"
+        case "snack":
+            return "cup.and.saucer"
+        default:
+            return "questionmark.circle"
+        }
+    }
+}

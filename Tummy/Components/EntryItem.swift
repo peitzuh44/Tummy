@@ -13,21 +13,6 @@ struct EntryItem: View {
     @State private var isActive = false
     @State private var animateBlinking = false
     
-    var icon: String {
-        switch entry.mealType.lowercased() {
-        case "breakfast":
-            return "sun.horizon"
-        case "lunch":
-            return "sun.max"
-        case "dinner":
-            return "moon.stars"
-        case "snack":
-            return "cup.and.saucer"
-        default:
-            return "questionmark.circle"
-        }
-    }
-    
     var body: some View {
         VStack {
             Button(action: {
@@ -65,7 +50,7 @@ struct EntryItem: View {
                             }
                             VStack(alignment: .leading, spacing: 8){
                                 HStack {
-                                    Image(systemName: "\(icon)")
+                                    Image(systemName: "\(entry.mealTypeIcon)")
                                     Text(entry.mealType.capitalized)
                                 }
                                 .font(.headline)
