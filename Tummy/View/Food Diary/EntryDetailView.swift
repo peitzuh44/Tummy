@@ -81,7 +81,7 @@ struct EntryDetailView: View {
         // MARK: Nav Bar
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ActionMenu()
+                ActionMenu(viewModel: viewModel, entry: entry)
             }
          
         }
@@ -132,6 +132,10 @@ struct ContextDisplay<T: Hashable>: View {
 }
 
 struct ActionMenu: View {
+    
+    @ObservedObject var viewModel: FoodEntryViewModel
+    var entry: FoodEntry
+    
     var body: some View {
         Menu {
             Button {
@@ -140,7 +144,9 @@ struct ActionMenu: View {
                 Text("Edit")
             }
             Button {
-                //
+                Task {
+                    await viewModel.deleteEntry(entryID: entry.id)
+                }
             } label: {
                 Text("Delete")
                     .foregroundStyle(Color.red)
@@ -176,3 +182,5 @@ struct PostMealQuestionnaireButton: View {
         }
     }
 }
+
+

@@ -11,23 +11,20 @@ import FirebaseFirestore
 import FirebaseStorage
 import UIKit
 
-
 class FoodEntryViewModel: ObservableObject {
-    
     // Variables
     @Published var foodEntries: [FoodEntry] = []
     @Published var foodItemsDictionary: [String: [FoodItem]] = [:] // Dictionary to hold food items for each entry
     @Published var allTags: [Tag] = []
     @Published var selectedTags: [Tag] = []
     @Published var images: [String: UIImage] = [:]
-
-    
     
     // Init firebase firestore
     let db = Firestore.firestore()
     @Published var user = Auth.auth().currentUser
     private var listenerRegistration: ListenerRegistration?
     
+    // MARK: Load and cache image
     func loadImage(for entry: FoodEntry) async {
         if let cachedImage = ImageCache.shared.getImage(forKey: entry.id) {
             DispatchQueue.main.async {
@@ -65,12 +62,9 @@ class FoodEntryViewModel: ObservableObject {
     func image(for entry: FoodEntry) -> UIImage? {
         return images[entry.id]
     }
-
-    
     // MARK: Tags configuration
     
-    
-    // TODO: Fetch all tags
+    // MARK: Fetch all tags
     func fetchTags() {
         
         guard let user = user else {
@@ -112,7 +106,6 @@ class FoodEntryViewModel: ObservableObject {
         }
     }
     
-    
     // TODO: Append tag to selected tags
     func selectOrRemoveTag(tag: Tag) {
         if tag.isSelected {
@@ -142,15 +135,12 @@ class FoodEntryViewModel: ObservableObject {
     
     // MARK: Reset tags
     func resetTags() async {
-        
         guard let user = user else {
             print("User not log in")
             return
         }
-        
         // database
         let tagsRef = db.collection("Tags")
-        
         do {
             // fetch all tags created by user
             let snapshot = try await tagsRef.whereField("createdBy", isEqualTo: user.uid).getDocuments()
@@ -182,7 +172,6 @@ class FoodEntryViewModel: ObservableObject {
 // MARK: Food Entry
 
 extension FoodEntryViewModel {
-    
     // TODO: Fetch Food Diary Entries
     func fetchEntries(date: Date){
         guard let user = user else {
@@ -365,7 +354,6 @@ extension FoodEntryViewModel {
                 }
             }
         }
-        
         let entry = FoodEntry(
             id: entryID,
             createdBy: user.uid,
@@ -382,7 +370,6 @@ extension FoodEntryViewModel {
             notes: notes,
             postCompleted: true
         )
-        
         do {
             // Create the FoodEntry document
             print("Creating FoodEntry with ID: \(entryID)")
@@ -431,6 +418,18 @@ extension FoodEntryViewModel {
         }
     }
     
+    // TODO: Delete Entry
+    
+    func deleteEntry(entryID: String) async {
+        let entryRef = db.collection("FoodEntries").document(entryID)
+        do {
+            try await entryRef.delete()
+            print("Document successfully removed!")
+        } catch {
+            print("Error removing document: \(error)")
+        }
+    }
+    
 }
 
 // MARK: Add Item
@@ -469,6 +468,21 @@ extension FoodEntryViewModel {
     
     func foodItems(for entry: FoodEntry) -> [FoodItem] {
         return foodItemsDictionary[entry.id] ?? []
+    }
+    
+    
+    // TODO: Delete food item
+    
+    func deleteFoodItem(entryID: String, itemID: String) async {
+        let itemRef = db.collection("FoodEntries").document(entryID).collection("FoodItems").document(itemID)
+        do {
+            try await itemRef.delete()
+            print("Document successfully removed!")
+        } catch {
+            print("Error removing document: \(error)")
+
+        }
+        
     }
 }
 

@@ -72,30 +72,15 @@ struct EntryItem: View {
                                             Text("You ate alone")
                                         }
                                     }
-                                    HStack {
-                                        Text("Place")
-                                            .font(.caption)
-                                        ScrollView(.horizontal){
-                                            HStack {
-                                                ForEach(entry.location, id: \.self) { tag in
-                                                    ContextStringTag(text: tag)
-                                                }
-                                            }
-                                        }
-                                        .scrollIndicators(.hidden)
+                                    if !entry.people.isEmpty {
+                                        ContextDisplay(entry: entry, keyPath: \.people, title: "People")
+                                    } else {
+                                        Text("You ate alone")
                                     }
-                                    HStack {
-                                        Text("Reason")
-                                            .font(.caption)
-                                        ScrollView(.horizontal){
-                                            HStack {
-                                                ForEach(entry.reason, id: \.self) { tag in
-                                                    ContextStringTag(text: tag)
-                                                }
-                                            }
-                                        }
-                                        .scrollIndicators(.hidden)
-                                    }
+                                    ContextDisplay(entry: entry, keyPath: \.location, title: "Place")
+
+                                    ContextDisplay(entry: entry, keyPath: \.people, title: "Reason")
+
                                     HStack {
                                         Text("Hungerness")
                                             .font(.caption)

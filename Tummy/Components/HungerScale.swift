@@ -34,7 +34,7 @@ struct HungerScale: View {
                         } label: {
                             HStack {
                                 HStack {
-                                    Text(option.numberSting)
+                                    Text(option.numberString)
                                     Text(option.text)
                                 }
                                 Spacer()
@@ -116,7 +116,7 @@ enum HungerScaleOption: String, CaseIterable {
         }
     }
     
-    var numberSting: String {
+    var numberString: String {
         switch self {
         case .one:
             return "1"
@@ -195,5 +195,6 @@ enum HungerScaleOption: String, CaseIterable {
             return "I feel sick... Painfully discomfort"
         }
     }
+ 
     
 }

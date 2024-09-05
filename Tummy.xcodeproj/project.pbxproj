@@ -58,6 +58,10 @@
 		AF964B7C2C709291005B2301 /* MindfulEatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF964B7B2C709290005B2301 /* MindfulEatingView.swift */; };
 		AF964B7F2C70935B005B2301 /* MindfulEating.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF964B7E2C70935B005B2301 /* MindfulEating.mp3 */; };
 		AF964B812C70A833005B2301 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF964B802C70A833005B2301 /* click.mp3 */; };
+		AFB87BB62C88F04E0032B6FC /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB87BB52C88F04E0032B6FC /* LaunchScreen.swift */; };
+		AFB87BBA2C89542A0032B6FC /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB87BB92C89542A0032B6FC /* StoreViewModel.swift */; };
+		AFB87BBC2C895A3E0032B6FC /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB87BBB2C895A3E0032B6FC /* SubscriptionView.swift */; };
+		AFB87BBE2C895EB20032B6FC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB87BBD2C895EB10032B6FC /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +116,11 @@
 		AF964B7B2C709290005B2301 /* MindfulEatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindfulEatingView.swift; sourceTree = "<group>"; };
 		AF964B7E2C70935B005B2301 /* MindfulEating.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MindfulEating.mp3; sourceTree = "<group>"; };
 		AF964B802C70A833005B2301 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
+		AFB87BB52C88F04E0032B6FC /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		AFB87BB72C8950790032B6FC /* Product.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Product.storekit; sourceTree = "<group>"; };
+		AFB87BB92C89542A0032B6FC /* StoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
+		AFB87BBB2C895A3E0032B6FC /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
+		AFB87BBD2C895EB10032B6FC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +131,7 @@
 				AF30B4DB2C8356560035858F /* FirebaseAuth in Frameworks */,
 				AF30B4DD2C8356560035858F /* FirebaseFirestore in Frameworks */,
 				AF30B50C2C858EAA0035858F /* FirebaseStorage in Frameworks */,
+				AFB87BBE2C895EB20032B6FC /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +200,7 @@
 		AF30B50A2C858EAA0035858F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AFB87BBD2C895EB10032B6FC /* StoreKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -223,6 +234,8 @@
 		AF6B11412C6A0AD8007CD3E6 /* Tummy */ = {
 			isa = PBXGroup;
 			children = (
+				AFB87BBF2C897C860032B6FC /* Core */,
+				AFB87BB82C89541C0032B6FC /* Store */,
 				AF30B5152C874E050035858F /* Info.plist */,
 				AF30B4F42C84ADC40035858F /* Tummy.entitlements */,
 				AF30B4E02C8357CD0035858F /* GoogleService-Info.plist */,
@@ -239,6 +252,8 @@
 				AF6B115D2C6A1428007CD3E6 /* Components */,
 				AF6B11502C6A0B23007CD3E6 /* View */,
 				AF6B11482C6A0ADB007CD3E6 /* Preview Content */,
+				AFB87BB52C88F04E0032B6FC /* LaunchScreen.swift */,
+				AFB87BB72C8950790032B6FC /* Product.storekit */,
 			);
 			path = Tummy;
 			sourceTree = "<group>";
@@ -353,6 +368,22 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		AFB87BB82C89541C0032B6FC /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				AFB87BB92C89542A0032B6FC /* StoreViewModel.swift */,
+				AFB87BBB2C895A3E0032B6FC /* SubscriptionView.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		AFB87BBF2C897C860032B6FC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -434,6 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFB87BBC2C895A3E0032B6FC /* SubscriptionView.swift in Sources */,
 				AF6B11632C6A187E007CD3E6 /* MainView.swift in Sources */,
 				AF30B4E42C83838A0035858F /* AuthView.swift in Sources */,
 				AF30B51A2C8776D50035858F /* String.swift in Sources */,
@@ -458,9 +490,11 @@
 				AF964B7C2C709291005B2301 /* MindfulEatingView.swift in Sources */,
 				AF30B4ED2C8384500035858F /* AppleSignInCoordinator.swift in Sources */,
 				AF30B4F72C84B0EC0035858F /* SettingsView.swift in Sources */,
+				AFB87BB62C88F04E0032B6FC /* LaunchScreen.swift in Sources */,
 				AF30B4F02C8481760035858F /* FoodEntryViewModel.swift in Sources */,
 				AF964B562C6CD7F3005B2301 /* Color.swift in Sources */,
 				AF964B332C6A5807005B2301 /* SearchBar.swift in Sources */,
+				AFB87BBA2C89542A0032B6FC /* StoreViewModel.swift in Sources */,
 				AF30B5122C86C7050035858F /* HapticManager.swift in Sources */,
 				AF30B4FA2C84CFEC0035858F /* AddNoteView.swift in Sources */,
 				AF30B5182C87647C0035858F /* PostMealSheet.swift in Sources */,
