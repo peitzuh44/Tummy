@@ -25,7 +25,6 @@ struct GenericPickerButton<Content: View>: View {
             }
             .padding()
             .frame(maxWidth: .infinity)
-            .foregroundColor(.white)
             .background(
                 RoundedRectangle(cornerRadius: 20.0)
                     .fill(.thinMaterial)

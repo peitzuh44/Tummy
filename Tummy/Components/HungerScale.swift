@@ -43,7 +43,6 @@ struct HungerScale: View {
                                         .foregroundColor(.green)
                                                   }
                             }
-                            .foregroundStyle(Color.white)
                             .padding()
                             .frame(maxWidth: .infinity)
                             .frame(height: 55)
@@ -69,7 +68,7 @@ struct HungerScale: View {
                 presentationMode.wrappedValue.dismiss()
             } label: {
                 Text("Done")
-                    .foregroundStyle(Color.white)
+                    .foregroundStyle(Color.inverseText)
                     .padding()
                     .frame(maxWidth: .infinity)
                     .frame(height: 55)

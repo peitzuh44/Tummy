@@ -14,10 +14,22 @@ import UIKit
 class FoodEntryViewModel: ObservableObject {
     // Variables
     @Published var foodEntries: [FoodEntry] = []
+    
     @Published var foodItemsDictionary: [String: [FoodItem]] = [:] // Dictionary to hold food items for each entry
     @Published var allTags: [Tag] = []
     @Published var selectedTags: [Tag] = []
     @Published var images: [String: UIImage] = [:]
+    private let maxFreeEntries = 3 // Limit for free users
+    @Published var showSubscriptionView: Bool = false // New property to control subscription page
+    @Published var showMindfulEatingView: Bool = false // New property to control subscription page
+
+
+    // MARK: Dependency injections to check subscription status
+    var storeViewModel: StoreViewModel
+    init(storeViewModel: StoreViewModel) {
+          self.storeViewModel = storeViewModel
+      }
+      
     
     // Init firebase firestore
     let db = Firestore.firestore()
@@ -32,30 +44,32 @@ class FoodEntryViewModel: ObservableObject {
             }
             return
         }
+
+        DispatchQueue.main.async {
+            // Show a placeholder image immediately
+            self.images[entry.id] = UIImage(systemName: "photo")
+        }
         
+        // Asynchronously load the image
         guard let photoURL = entry.photoURL, let url = URL(string: photoURL) else {
-            DispatchQueue.main.async {
-                self.images[entry.id] = UIImage(systemName: "photo")
-            }
             return
         }
         
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 5.0 // Adjust timeout as needed
+        let session = URLSession(configuration: sessionConfig)
+        
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let (data, _) = try await session.data(from: url)
             if let uiImage = UIImage(data: data) {
                 DispatchQueue.main.async {
                     self.images[entry.id] = uiImage
                     ImageCache.shared.setImage(uiImage, forKey: entry.id)
                 }
-            } else {
-                DispatchQueue.main.async {
-                    self.images[entry.id] = UIImage(systemName: "photo")
-                }
             }
         } catch {
-            DispatchQueue.main.async {
-                self.images[entry.id] = UIImage(systemName: "photo")
-            }
+            // Handle error (optional)
+            print("Error loading image: \(error.localizedDescription)")
         }
     }
     
@@ -173,7 +187,7 @@ class FoodEntryViewModel: ObservableObject {
 
 extension FoodEntryViewModel {
     // TODO: Fetch Food Diary Entries
-    func fetchEntries(date: Date){
+    func fetchEntries(date: Date) {
         guard let user = user else {
             print("User not login")
             return
@@ -198,6 +212,13 @@ extension FoodEntryViewModel {
                     return
                 }
                 self.foodEntries = documents.compactMap { try? $0.data(as: FoodEntry.self)}
+                
+                // Load images in the background
+                Task {
+                    for entry in self.foodEntries {
+                        await self.loadImage(for: entry)
+                    }
+                }
             }
     }
     
@@ -253,74 +274,105 @@ extension FoodEntryViewModel {
             }
         }
     }
+    // MARK: Create entry
+  
     func createEntry(hungerBefore: HungerScaleOption, image: UIImage?, meal: Meal, foodItems: [FoodItem]) async {
-        guard let user = user else {
-            print("User not signed in")
-            return
-        }
+        // Check if user can add food entry
+        let canAdd = await canAddFoodEntry()
         
-        let selectedTags = await fetchSelectedTags()
-        
-        print("✅ Input Tags \(selectedTags)")
-        let people = filterAndMapToString(tags: selectedTags, filter: .people)
-        let locations = filterAndMapToString(tags: selectedTags, filter: .location)
-        let reasons = filterAndMapToString(tags: selectedTags, filter: .reason)
-        print("People: \(people) | Location: \(locations) | Reason: \(reasons)")
-        
-        let entryRef = db.collection("FoodEntries").document()
-        let entryID = entryRef.documentID
-        
-        var photoURL = "none"
-        
-        if let image = image {
-            await withCheckedContinuation { continuation in
-                uploadImageToFirebase(image: image) { result in
-                    switch result {
-                    case .success(let url):
-                        photoURL = url
-                    case .failure(let error):
-                        print("Error uploading image: \(error)")
+        if canAdd {
+            guard let user = user else {
+                print("User not signed in")
+                return
+            }
+
+            let selectedTags = await fetchSelectedTags()
+            print("✅ Input Tags \(selectedTags)")
+            
+            let people = filterAndMapToString(tags: selectedTags, filter: .people)
+            let locations = filterAndMapToString(tags: selectedTags, filter: .location)
+            let reasons = filterAndMapToString(tags: selectedTags, filter: .reason)
+            print("People: \(people) | Location: \(locations) | Reason: \(reasons)")
+            
+            let entryRef = db.collection("FoodEntries").document()
+            let entryID = entryRef.documentID
+            
+            var photoURL = "none"
+            
+            if let image = image {
+                await withCheckedContinuation { continuation in
+                    uploadImageToFirebase(image: image) { result in
+                        switch result {
+                        case .success(let url):
+                            photoURL = url
+                        case .failure(let error):
+                            print("Error uploading image: \(error)")
+                        }
+                        continuation.resume()
                     }
-                    continuation.resume()
                 }
             }
-        }
-        
-        let entry = FoodEntry(
-            id: entryID,
-            createdBy: user.uid,
-            isRealTime: true,
-            photoURL: photoURL,
-            hungerBefore: hungerBefore.number,
-            time: Date(),
-            mealType: meal.text,
-            location: locations,
-            eatAlone: people.isEmpty,
-            people: people,
-            reason: reasons,
-            fullnessAfter: 0,
-            notes: "No notes for now",
-            postCompleted: false
-        )
-        
-        do {
-            // Create the FoodEntry document
-            print("Creating FoodEntry with ID: \(entryID)")
-            try entryRef.setData(from: entry)
-            print("FoodEntry created successfully")
-            // Add each FoodItem as a sub-collection
-            for foodItem in foodItems {
-                print("Adding FoodItem with ID: \(foodItem.id) to FoodEntry with ID: \(entryID)")
-                let itemRef = entryRef.collection("FoodItems").document(foodItem.id)
-                try itemRef.setData(from: foodItem)
-                print("FoodItem added successfully")
-            }
+           
+            let entry = FoodEntry(
+                id: entryID,
+                createdBy: user.uid,
+                isRealTime: true,
+                photoURL: photoURL,
+                hungerBefore: hungerBefore.number,
+                time: Date(),
+                mealType: meal.text,
+                location: locations,
+                eatAlone: people.isEmpty,
+                people: people,
+                reason: reasons,
+                fullnessAfter: 0,
+                notes: "No notes for now",
+                postCompleted: false
+            )
             
-            await resetTags()
-        } catch {
-            print("Error creating entry or adding food items: \(error)")
-        }
+            do {
+                // Create the FoodEntry document in Firestore
+                print("Creating FoodEntry with ID: \(entryID)")
+                try entryRef.setData(from: entry)
+                print("FoodEntry created successfully")
+                
+                // Add each FoodItem to the sub-collection
+                for foodItem in foodItems {
+                    print("Adding FoodItem with ID: \(foodItem.id) to FoodEntry with ID: \(entryID)")
+                    let itemRef = entryRef.collection("FoodItems").document(foodItem.id)
+                    try itemRef.setData(from: foodItem)
+                    print("FoodItem added successfully")
+                }
+                
+                // Reset tags after entry is created
+                await resetTags()
+                
+                DispatchQueue.main.async {
+                    self.showMindfulEatingView = true // Show subscription page
+                }
+            } catch {
+                print("Error creating entry or adding food items: \(error)")
+            }
+
+        } else {
+            print("The user has reach limit")
+            // If the user has reached the limit, show the subscription view
+            DispatchQueue.main.async {
+                self.showSubscriptionView = true // Show subscription page
+            }        }
     }
+//    // MARK: Show subscription page
+//    func showSubscriptionView() {
+//            DispatchQueue.main.async {
+//                self.showSubscriptionView = true // Show subscription page
+//            }
+//    }
+//    func showMindfulEatingView() {
+//            DispatchQueue.main.async {
+//                self.showMindfulEatingView = true // Show subscription page
+//            }
+//    }
+    
     
     func createPastEntry(hungerBefore: HungerScaleOption, image: UIImage?, meal: Meal, foodItems: [FoodItem], fullnessAfter: HungerScaleOption, notes: String) async {
         guard let user = user else {
@@ -382,7 +434,6 @@ extension FoodEntryViewModel {
                 try itemRef.setData(from: foodItem)
                 print("FoodItem added successfully")
             }
-            
             await resetTags()
         } catch {
             print("Error creating entry or adding food items: \(error)")
@@ -501,3 +552,52 @@ class ImageCache {
     }
 }
 
+extension FoodEntryViewModel {
+    
+    // Fetch number of food entries created by the current user
+    func fetchUserFoodEntryCount(completion: @escaping (Int?, Error?) -> Void) {
+        guard let userUID = Auth.auth().currentUser?.uid else {
+            completion(nil, NSError(domain: "AuthError", code: 401, userInfo: [NSLocalizedDescriptionKey: "User not logged in"]))
+            return
+        }
+        
+        // Query the FoodEntries collection for documents created by the current user
+        db.collection("FoodEntries")
+            .whereField("createdBy", isEqualTo: userUID)
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completion(nil, error)
+                } else {
+                    let documentCount = snapshot?.documents.count ?? 0
+                    print("Fetched \(documentCount) food entries for user \(userUID)") // Debugging
+                    completion(documentCount, nil)
+                }
+            }
+    }
+    
+    // Update canAddFoodEntry to be async
+    func canAddFoodEntry() async -> Bool {
+        return await withCheckedContinuation { continuation in
+            fetchUserFoodEntryCount { count, error in
+                if let error = error {
+                    print("Error fetching food entries count: \(error.localizedDescription)")
+                    continuation.resume(returning: false)
+                    return
+                }
+                
+                // Log the number of food entries and subscription status for debugging
+                print("Food entry count: \(count ?? 0)")
+                print("Has subscription: \(self.storeViewModel.purchasedSubscriptions.count > 0)")
+                
+                // Check if the user has purchased a subscription
+                let hasSubscription = !self.storeViewModel.purchasedSubscriptions.isEmpty
+                
+                // Check if the user is allowed to add more entries (subscription or free limit)
+                let canAdd = hasSubscription || (count ?? 0) < self.maxFreeEntries
+                print("Can add food entry: \(canAdd)") // Debugging
+                continuation.resume(returning: canAdd)
+            }
+        }
+    }
+
+}

@@ -79,7 +79,7 @@ class AuthManager: ObservableObject {
         guard let user = Auth.auth().currentUser else { return }
         
         let userId = user.uid
-        
+        authState = .signedOut
         // Delete the user's document and all associated todos
         db.collection("Users").document(userId).delete { error in
             if let error = error {

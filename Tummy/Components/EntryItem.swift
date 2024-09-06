@@ -56,22 +56,7 @@ struct EntryItem: View {
                                 .font(.headline)
                                 Divider()
                                 VStack(alignment: .leading, spacing: 8){
-                                    HStack {
-                                        Text("People")
-                                            .font(.caption)
-                                        if !entry.people.isEmpty {
-                                            ScrollView(.horizontal){
-                                                HStack {
-                                                    ForEach(entry.people, id: \.self) { tag in
-                                                        ContextStringTag(text: tag ?? "You ate alone.")
-                                                    }
-                                                }
-                                            }
-                                            .scrollIndicators(.hidden)
-                                        } else {
-                                            Text("You ate alone")
-                                        }
-                                    }
+
                                     if !entry.people.isEmpty {
                                         ContextDisplay(entry: entry, keyPath: \.people, title: "People")
                                     } else {
@@ -126,7 +111,6 @@ struct EntryItem: View {
                     .font(.caption2)
                 }
             }
-            .foregroundStyle(.white)
             .navigationDestination(isPresented: $isActive) {
                 EntryDetailView(viewModel: viewModel, entry: entry)
             }

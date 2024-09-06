@@ -7,34 +7,71 @@
 
 import SwiftUI
 import StoreKit
+
+
 struct SubscriptionView: View {
-    
-    @EnvironmentObject var storeVM: StoreViewModel
+    @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var storeVM: StoreViewModel
     @State var isPurchased = false
     
     var body: some View {
-        VStack {
-            ForEach(storeVM.subscriptions) { product in
-                Button {
-                    Task {
-                        await buy(product: product)
-                    }
-                } label: {
-                    VStack {
+        NavigationStack {
+            VStack {
+                if storeVM.purchasedSubscriptions.isEmpty {
+                    VStack (alignment: .leading){
                         HStack {
-                            Text(product.displayPrice)
-                            Text(product.displayName)
+                            Image(systemName: "crown")
+                                .foregroundStyle(Color.yellow)
+                            Text("What you will get?")
                         }
-                        Text(product.description)
-                    }.padding()
-                        .foregroundStyle(.white)
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 20.0)
-                            .fill(Color.blue))
+                        .font(.title2)
+                        VStack(alignment: .leading){
+//                            BenefitItem(text: "Unlock insight tab")
+                            BenefitItem(text: "Unlimited food entry")
+//                            BenefitItem(text: "Access to all mindfulness guidance")
+                        }
+                    }
+                    
+                    ForEach(storeVM.subscriptions) { product in
+                        Button {
+                            Task {
+                                await buy(product: product)
+                            }
+                        } label: {
+                            HStack {
+                                HStack {
+                                    Text(product.displayPrice)
+                                    Text(product.displayName)
+                                }
+                                Spacer()
+                                Text(product.description)
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .foregroundStyle(.white)
+                            .background(RoundedRectangle(cornerRadius: 20.0)
+                                .fill(Color.blue))
+                            .padding(.horizontal)
+                        }
+                        
+                    }
+                } else {
+                    Text("You have already purchased the subscription.")
+                    Text("If you want to cancel the subscription. Please go to AppStore >> Settings >> Manage Subscription")
                 }
-                
             }
-            
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("X")
+                            .foregroundStyle(Color.accent)
+                            .font(.title2)
+                    }
+                    
+                }
+            }
         }
     }
     
@@ -51,3 +88,15 @@ struct SubscriptionView: View {
     }
 }
 
+struct BenefitItem: View {
+    
+    var text: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "checkmark")
+                .foregroundStyle(Color.green)
+            Text(text)
+        }
+    }
+}
