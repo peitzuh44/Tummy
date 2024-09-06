@@ -660,8 +660,8 @@
 				INFOPLIST_FILE = Tummy/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Tummy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSCameraUsageDescription = "We will need to access your camera";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to your photo library to allow you to choose and view photos.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Tummy needs access to your camera to take photos of your meals for your food journal. This helps you document what you eat and track your mindful eating habits.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Tummy needs access to your photo library to allow you to select meal photos for your food journal. This helps you upload and track your past meals.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -704,8 +704,8 @@
 				INFOPLIST_FILE = Tummy/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Tummy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSCameraUsageDescription = "We will need to access your camera";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to your photo library to allow you to choose and view photos.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Tummy needs access to your camera to take photos of your meals for your food journal. This helps you document what you eat and track your mindful eating habits.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Tummy needs access to your photo library to allow you to select meal photos for your food journal. This helps you upload and track your past meals.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
