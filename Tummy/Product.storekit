@@ -89,7 +89,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "tummy.yearly.subscription",
+          "productID" : "tummy.app.annual.subscription",
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "Yearly",
           "subscriptionGroupID" : "A7CCD823",
@@ -102,7 +102,7 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "3.99",
+          "displayPrice" : "2.99",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "1E47C1DC",
@@ -114,7 +114,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "tummy.monthly.subscription",
+          "productID" : "tummy.app.monthly.subscription",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Monthly",
           "subscriptionGroupID" : "A7CCD823",

@@ -152,7 +152,7 @@ struct PostMealSheet: View {
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                             Text("Done")
-                            .foregroundStyle(Color.inverseText)
+                            .foregroundStyle(Color.theme.inverseText)
                                 .padding()
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 55)
@@ -176,7 +176,7 @@ struct PostMealSheet: View {
                         }
                     } label: {
                         Text("X")
-                            .foregroundStyle(Color.accent)
+                            .foregroundStyle(Color.theme.accent)
                             .font(.title2)
                     }
 

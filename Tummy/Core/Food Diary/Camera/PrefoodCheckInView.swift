@@ -113,7 +113,7 @@ struct PrefoodCheckInView: View {
                                 .padding()
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 55)
-                                .foregroundStyle(Color.inverseText)
+                                .foregroundStyle(Color.theme.inverseText)
                                 .background(
                                     RoundedRectangle(cornerRadius: 20.0)
                                         .fill(Color.accentColor)

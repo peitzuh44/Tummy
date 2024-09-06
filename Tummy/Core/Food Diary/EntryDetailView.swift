@@ -195,7 +195,7 @@ struct PostMealQuestionnaireButton: View {
                 Image(systemName: "list.clipboard")
                 Text("post meal questionnarie")
             }
-            .foregroundStyle(Color.inverseText)
+            .foregroundStyle(Color.theme.inverseText)
             .font(.headline)
             .frame(maxWidth: .infinity)
             .frame(height: 60)

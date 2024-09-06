@@ -66,7 +66,7 @@ struct SubscriptionView: View {
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("X")
-                            .foregroundStyle(Color.accent)
+                            .foregroundStyle(Color.theme.accent)
                             .font(.title2)
                     }
                     

@@ -238,10 +238,11 @@
 		AF6B11412C6A0AD8007CD3E6 /* Tummy */ = {
 			isa = PBXGroup;
 			children = (
+				AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */,
+				AF30B5152C874E050035858F /* Info.plist */,
 				AFF7DC9B2C8ACAFA00BC145C /* Launch Screen.storyboard */,
 				AFB87BBF2C897C860032B6FC /* Core */,
 				AFB87BB82C89541C0032B6FC /* Store */,
-				AF30B5152C874E050035858F /* Info.plist */,
 				AF30B4F42C84ADC40035858F /* Tummy.entitlements */,
 				AF30B4E02C8357CD0035858F /* GoogleService-Info.plist */,
 				AF6B11622C6A187E007CD3E6 /* MainView.swift */,
@@ -264,7 +265,6 @@
 		AF6B11482C6A0ADB007CD3E6 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */,
 				AF6B11492C6A0ADB007CD3E6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";

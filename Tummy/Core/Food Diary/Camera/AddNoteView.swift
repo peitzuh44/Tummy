@@ -23,7 +23,7 @@ struct AddNoteView: View {
                 } label: {
                     Text("Save")
                         .font(.headline)
-                        .foregroundStyle(Color.inverseText)
+                        .foregroundStyle(Color.theme.inverseText)
                         .frame(maxWidth: .infinity)
                         .frame(height: 60)
                         .background(
