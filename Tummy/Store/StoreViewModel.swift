@@ -17,7 +17,7 @@ class StoreViewModel: ObservableObject {
 
     
     
-    private let productIDs: [String] = ["tummy.app.annual.subscription", "tummy.app.monthly.subscription"]
+    private let productIDs: [String] = ["tummy_1999_1y_1w0", "tummy_399_1m_3d0"]
     
     var updateListenerTask: Task<Void, Error>? = nil
     

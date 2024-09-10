@@ -64,7 +64,7 @@ struct EntryItem: View {
                                     }
                                     ContextDisplay(entry: entry, keyPath: \.location, title: "Place")
 
-                                    ContextDisplay(entry: entry, keyPath: \.people, title: "Reason")
+                                    ContextDisplay(entry: entry, keyPath: \.reason, title: "Reason")
 
                                     HStack {
                                         Text("Hungerness")

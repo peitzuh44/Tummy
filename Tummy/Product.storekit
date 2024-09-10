@@ -84,12 +84,12 @@
           },
           "localizations" : [
             {
-              "description" : "7 days free trial",
-              "displayName" : "Yearly",
+              "description" : "1-week free trial",
+              "displayName" : "Annual",
               "locale" : "en_US"
             }
           ],
-          "productID" : "tummy.app.annual.subscription",
+          "productID" : "tummy_1999_1y_1w0",
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "Yearly",
           "subscriptionGroupID" : "A7CCD823",
@@ -102,19 +102,23 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "2.99",
+          "displayPrice" : "3.99",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "1E47C1DC",
-          "introductoryOffer" : null,
+          "introductoryOffer" : {
+            "internalID" : "1E242603",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P3D"
+          },
           "localizations" : [
             {
-              "description" : "Billed Monthly",
+              "description" : "3-days free trial",
               "displayName" : "Monthly",
               "locale" : "en_US"
             }
           ],
-          "productID" : "tummy.app.monthly.subscription",
+          "productID" : "tummy_399_1m_3d0",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Monthly",
           "subscriptionGroupID" : "A7CCD823",

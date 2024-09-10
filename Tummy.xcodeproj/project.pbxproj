@@ -241,12 +241,12 @@
 				AF6B11462C6A0ADB007CD3E6 /* Assets.xcassets */,
 				AF30B5152C874E050035858F /* Info.plist */,
 				AFF7DC9B2C8ACAFA00BC145C /* Launch Screen.storyboard */,
-				AFB87BBF2C897C860032B6FC /* Core */,
-				AFB87BB82C89541C0032B6FC /* Store */,
 				AF30B4F42C84ADC40035858F /* Tummy.entitlements */,
 				AF30B4E02C8357CD0035858F /* GoogleService-Info.plist */,
 				AF6B11622C6A187E007CD3E6 /* MainView.swift */,
 				AF6B11422C6A0AD8007CD3E6 /* TummyApp.swift */,
+				AFB87BB82C89541C0032B6FC /* Store */,
+				AFB87BBF2C897C860032B6FC /* Core */,
 				AF30B4E22C8383640035858F /* Auth */,
 				AF964B522C6CD16B005B2301 /* Temorary UI */,
 				AF964B7D2C70933B005B2301 /* Sounds */,
@@ -675,7 +675,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huang.Tummy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -719,7 +719,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huang.Tummy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -9,13 +9,13 @@ import AuthenticationServices
 import FirebaseFirestore
 import CryptoKit
 
+// Auth state, use to determine which screen to show
 enum AuthState {
     case signedIn
     case signedOut
 }
 
 class AuthManager: ObservableObject {
-    
     @Published var authState: AuthState = .signedOut
     private var currentNonce: String?
     private let db = Firestore.firestore()
